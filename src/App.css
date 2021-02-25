@@ -22,6 +22,10 @@
   background-image: url(mesa.jpg);
 } */
 
+.saloon-page {
+  margin: 3%;
+}
+
 .login-form, .register-form {
   position: absolute;
   top: 0;
@@ -44,25 +48,77 @@
   margin: 4px 4px 4px 10px;
 }
 
-.cardapio {
+main {
+  margin: 0 auto;
   display: flex;
+  align-content: center;
+}
+
+.menu-area {
+  vertical-align: top;
+  display: inline-flex;
   flex-wrap: wrap;
+  overflow-y: auto;
+  width: 60vw;
+  height: 80vh;
+  margin-right: 4%;
+  padding: 2%;
+  border-radius: 10px;
+  background-color: lightsteelblue;
 }
 
 .products {
   display: inline-flex;
-  flex: 0 1 40%;
+  flex: 0 1 45%;
   margin: 10px;
+  align-items: center;
 }
 
-.img-product {
+/* .img-product {
   width: 150px;
   height: 150px;
+} */
+
+.choose-item-btn {
+  height: 35px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+ul {
+  padding-inline-start: 0;
 }
 
 li {
   list-style-type: none;
 }
+
+.order-info {
+  vertical-align: top;
+  display: inline-block;
+  overflow-y: auto;
+  width: 30vw;
+  height: 80vh;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: lightsteelblue; 
+}
+
+.order-details {
+  margin: 5px;
+  padding: 10px;
+  text-align: right;
+}
+
+.order-summary {
+  margin: 50px;
+  text-align: center;
+}
+
+.qtd-item-btn {
+  margin: 0 10px 0 10px;
+}
+
 
 @media screen and (max-width: 1024px) {
 

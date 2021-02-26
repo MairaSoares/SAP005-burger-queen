@@ -82,7 +82,7 @@ function Login() {
             </div>
           </div>
           <label>
-            <input type="submit" className="btn btn-dark btn-lg btn-block" value="Enviar" onClick={(event) => handleSubmit(event)} />
+            <input type="submit" className="btn btn-dark btn-lg btn-block" value="Entrar" onClick={(event) => handleSubmit(event)} />
           </label>
           <p>
             Não tem conta? <Link to="/register">Cadastre-se!</Link>

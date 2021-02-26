@@ -11,7 +11,8 @@ function Saloon() {
   const token = localStorage.getItem("token");
   const history = useHistory();
   const [itensMenu, setItens] = useState([]);
-  let contador = 1;
+  const [addition, setAddition] = useState(1);
+  const [subtraction, setSubtraction] = useState (-1);
   let idProducts = 0;
 
   function logout() {
@@ -59,8 +60,9 @@ function Saloon() {
   }
   
   function handleClick (item) {
+    item.qtd = 1;
     setItens([...itensMenu, item]); 
-    console.log("cliquei");
+    console.log(item);
     /*contador +=1;
     const obj = {
       id: item.id,
@@ -75,9 +77,27 @@ function Saloon() {
 
   function handleOrder(event) {
     event.preventDefault();
-    clientOrder (clientName, table, products, contador, idProducts);
+    clientOrder (clientName, table, products, idProducts, addition);
   }
-    
+
+  
+  const additionProduct = (event, item, index) => {
+    event.preventDefault();
+    let quantItemAddition = [...itensMenu]
+    quantItemAddition[index].qtd +=1;
+    setItens(quantItemAddition);
+    console.log(item);
+  }
+
+  const subtractionProduct = (event, item, index) => {
+    event.preventDefault();
+    let quantItemSub = [...itensMenu]
+    quantItemSub[index].qtd -=1;
+    setItens(quantItemSub);
+    console.log(item);
+  }
+
+
   return (
     <div className="saloon-page">
       <h1>Salão</h1>
@@ -132,9 +152,9 @@ function Saloon() {
                       <li>{item.complement}</li>
                       <li>R$ {item.price}</li>
                     </ul>
-                    <button className="qtd-item-btn" onClick={() => (console.log(contador += 1))}>+</button>
-                    {contador}
-                    <button className="qtd-item-btn" onClick={() => (console.log(contador -= 1))}>-</button>
+                    <button className="qtd-item-btn" onClick={(event) => additionProduct(event, item, index)}>+</button>
+                    {item.qtd}
+                    <button className="qtd-item-btn" onClick={(event) => subtractionProduct(event, item, index)}>-</button>
                   </div>
                 )
               })

@@ -11,7 +11,8 @@ function Saloon() {
   const token = localStorage.getItem("token");
   const history = useHistory();
   const [itensMenu, setItens] = useState([]);
-  let contador = 1;
+  const [addition, setAddition] = useState(1);
+  const [subtraction, setSubtraction] = useState (-1);
   let idProducts = 0;
 
   function logout() {
@@ -75,13 +76,28 @@ function Saloon() {
 
   function handleOrder(event) {
     event.preventDefault();
-    clientOrder (clientName, table, products, contador, idProducts);
+    clientOrder (clientName, table, products, idProducts, addition);
   }
-    
+
+  
+  const additionProduct = (event) => {
+    event.preventDefault();
+    setAddition(addition +1)
+    console.log(addition);
+  }
+
+  const subtractionProduct = (event) => {
+    event.preventDefault();
+    setSubtraction(subtraction - 1)
+    console.log(subtraction);
+  }
+
+
   return (
     <div className="saloon-page">
       <h1>Salão</h1>
       <button onClick={(event) => logout(event)}>Sair</button>
+      
 
       <main>
         <section className="menu-area">
@@ -90,7 +106,6 @@ function Saloon() {
               return (
                 <div className="products" key={index}>
                   <button className="choose-item-btn" onClick={() => handleClick(menuItem)}>Adicionar</button>
-                  
                   <ul>
                     <li>{menuItem.name}</li>
                     <li>{menuItem.flavor}</li>
@@ -132,9 +147,9 @@ function Saloon() {
                       <li>{item.complement}</li>
                       <li>R$ {item.price}</li>
                     </ul>
-                    <button className="qtd-item-btn" onClick={() => (console.log(contador += 1))}>+</button>
-                    {contador}
-                    <button className="qtd-item-btn" onClick={() => (console.log(contador -= 1))}>-</button>
+                    <button className="qtd-item-btn" onClick={(event) => additionProduct(event)}>+</button>
+                    {addition}
+                    <button className="qtd-item-btn" onClick={(event) => subtractionProduct(event)}>-</button>
                   </div>
                 )
               })

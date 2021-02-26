@@ -11,8 +11,6 @@ function Saloon() {
   const token = localStorage.getItem("token");
   const history = useHistory();
   const [itensMenu, setItens] = useState([]);
-  const [addition, setAddition] = useState(1);
-  const [subtraction, setSubtraction] = useState (-1);
   let idProducts = 0;
 
   function logout() {
@@ -39,12 +37,12 @@ function Saloon() {
       .catch(error => console.log("error", error));
   }, [])
 
-  function clientOrder(clientName, table, contador, id) {
+  function clientOrder(clientName, table, id) {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `${token}`);
     myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({ "client":{clientName}, "table":{table}, "products":[{ "id": id,"qtd": contador }]});
+    const raw = JSON.stringify({ "client":{clientName}, "table":{table}, "products":[{ "id": id,"qtd":{itensMenu} }]});
 
     const requestOptions = {
       method: "POST",
@@ -63,21 +61,12 @@ function Saloon() {
     item.qtd = 1;
     setItens([...itensMenu, item]); 
     console.log(item);
-    /*contador +=1;
-    const obj = {
-      id: item.id,
-      qtd: contador,
-    };
-    
-    setProducts((prevState) => [...prevState, obj]);
-    console.log(products);
-    console.log(itensMenu);*/
 
   }
 
   function handleOrder(event) {
     event.preventDefault();
-    clientOrder (clientName, table, products, idProducts, addition);
+    clientOrder (clientName, table, products, idProducts);
   }
 
   

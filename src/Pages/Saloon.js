@@ -60,8 +60,9 @@ function Saloon() {
   }
   
   function handleClick (item) {
+    item.qtd = 1;
     setItens([...itensMenu, item]); 
-    console.log("cliquei");
+    console.log(item);
     /*contador +=1;
     const obj = {
       id: item.id,
@@ -80,16 +81,20 @@ function Saloon() {
   }
 
   
-  const additionProduct = (event) => {
+  const additionProduct = (event, item, index) => {
     event.preventDefault();
-    setAddition(addition +1)
-    console.log(addition);
+    let quantItemAddition = [...itensMenu]
+    quantItemAddition[index].qtd +=1;
+    setItens(quantItemAddition);
+    console.log(item);
   }
 
-  const subtractionProduct = (event) => {
+  const subtractionProduct = (event, item, index) => {
     event.preventDefault();
-    setSubtraction(subtraction - 1)
-    console.log(subtraction);
+    let quantItemSub = [...itensMenu]
+    quantItemSub[index].qtd -=1;
+    setItens(quantItemSub);
+    console.log(item);
   }
 
 
@@ -147,9 +152,9 @@ function Saloon() {
                       <li>{item.complement}</li>
                       <li>R$ {item.price}</li>
                     </ul>
-                    <button className="qtd-item-btn" onClick={(event) => additionProduct(event)}>+</button>
-                    {addition}
-                    <button className="qtd-item-btn" onClick={(event) => subtractionProduct(event)}>-</button>
+                    <button className="qtd-item-btn" onClick={(event) => additionProduct(event, item, index)}>+</button>
+                    {item.qtd}
+                    <button className="qtd-item-btn" onClick={(event) => subtractionProduct(event, item, index)}>-</button>
                   </div>
                 )
               })

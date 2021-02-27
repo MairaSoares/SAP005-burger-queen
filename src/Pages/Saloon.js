@@ -96,7 +96,7 @@ function Saloon() {
 
   return (
     <div className="saloon-page">
-      <h1 class= "title">Saloon</h1>
+      <h1 class= "title"><img src= "LogoSaloon.png" /></h1>
       <button onClick={(event) => logout(event)}>Sair</button>
       
       <main>

@@ -96,7 +96,7 @@ function Saloon() {
 
   return (
     <div className="saloon-page">
-      <h1>Salão</h1>
+      <h1 class= "title"><img src= "LogoSaloon.png" /></h1>
       <button onClick={(event) => logout(event)}>Sair</button>
       
       <main>
@@ -124,18 +124,18 @@ function Saloon() {
           <div className="order-details">
             <label>
               Cliente:
-              <input type="text" value={clientName} onChange={(event) => setClientName(event.target.value)} />
+              <input type="text" value={clientName} class="btntransp"  onChange={(event) => setClientName(event.target.value)} />
             </label>
             <label>
               Mesa:
-              <input type="text" value={table} onChange={(event) => setTable(event.target.value)} />
+              <input type="text" class="btntransp" value={table} onChange={(event) => setTable(event.target.value)} />
             </label>
             <br /><button className="post-order-btn" onClick={(event) => handleOrder(event)}>Enviar Pedido</button> 
           </div>
 
           <section>
             {
-              // itensMenu.length !== 0 &&
+              //itensMenu.length !== 0 &&
               itensMenu.map((item, index) => {
                 let orderItem = {
                   id: item.id,

@@ -11,6 +11,8 @@ function Saloon() {
   const token = localStorage.getItem("token");
   const history = useHistory();
   const [itensMenu, setItens] = useState([]);
+  const total = [];
+  let idProducts = 0;
 
   function logout() {
     localStorage.clear();
@@ -30,6 +32,7 @@ function Saloon() {
     fetch("https://lab-api-bq.herokuapp.com/products", requestOptions) 
       .then(response => response.json())
       .then(result => {
+        localStorage.setItem('totalFinish', ' ')
         console.log(result);
         setMenu(result)
       })
@@ -52,7 +55,7 @@ function Saloon() {
 
     fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
       .then(response => response.json())
-      .then(result => setMenu(result))
+      .then(result => {setMenu(result)})
       .catch(error => console.log("error", error));
   }
   
@@ -140,6 +143,11 @@ function Saloon() {
                   qtd: item.qtd
                 }
                 productsList.push(orderItem);
+                // console.log(itensMenu);
+                idProducts = item.id;
+                total.push(item.price)
+                const totalSome = total.reduce((acomulate, elemento) => acomulate + elemento, 0);
+                localStorage.setItem('totalFinish', totalSome);
                 return (
                   <div key={index} className="order-summary">
                     <ul>
@@ -155,6 +163,9 @@ function Saloon() {
                 )
               })
             }
+            <div>
+              TOTAL R$ {localStorage.getItem('totalFinish')}
+            </div>
           </section>
         </aside>
       </main>

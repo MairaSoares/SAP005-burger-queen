@@ -12,7 +12,6 @@ function Saloon() {
   const history = useHistory();
   const [itensMenu, setItens] = useState([]);
   const total = [];
-  let idProducts = 0;
 
   function logout() {
     localStorage.clear();
@@ -88,7 +87,7 @@ function Saloon() {
     quantItemSub[index].qtd -=1;
     item.subtotal = subtotalSub * item.qtd;
     if (item.qtd <= 0 || item.subtotal <= 0) {
-      // apagar item - função excluir?
+      // apagar item se qtd ou subtotal for zero - função excluir?
     }
     setItens(quantItemSub);
     console.log(quantItemSub);
@@ -143,9 +142,7 @@ function Saloon() {
                   qtd: item.qtd
                 }
                 productsList.push(orderItem);
-                // console.log(itensMenu);
-                idProducts = item.id;
-                total.push(item.price)
+                total.push(item.subtotal);
                 const totalSome = total.reduce((acomulate, elemento) => acomulate + elemento, 0);
                 localStorage.setItem('totalFinish', totalSome);
                 return (
@@ -164,7 +161,7 @@ function Saloon() {
               })
             }
             <div>
-              TOTAL R$ {localStorage.getItem('totalFinish')}
+              TOTAL: R$ {localStorage.getItem('totalFinish')}
             </div>
           </section>
         </aside>

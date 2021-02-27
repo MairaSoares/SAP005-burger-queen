@@ -5,14 +5,13 @@ import { useHistory } from "react-router-dom";
 function Saloon() {
 
   const [menu, setMenu] = useState([]);
-  const [clientName, setClient] = useState("");
+  const [clientName, setClientName] = useState("");
   const [table, setTable] = useState("");
-  const [products, setProducts] = useState([]);
+  const productsList = [];
   const token = localStorage.getItem("token");
   const history = useHistory();
   const [itensMenu, setItens] = useState([]);
   const total = [];
-  let idProducts = 0;
 
   function logout() {
     localStorage.clear();
@@ -39,12 +38,12 @@ function Saloon() {
       .catch(error => console.log("error", error));
   }, [])
 
-  function clientOrder(clientName, table, id) {
+  function clientOrder(clientName, table, productsList) {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `${token}`);
     myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({ "client":{clientName}, "table":{table}, "products":[{ "id": id,"qtd":{itensMenu} }]});
+    const raw = JSON.stringify({ "client": {clientName}, "table": {table}, "products": {productsList} });
 
     const requestOptions = {
       method: "POST",
@@ -61,31 +60,37 @@ function Saloon() {
   
   function handleClick (item) {
     item.qtd = 1;
-    setItens([...itensMenu, item]); 
+    item.subtotal = item.price;
+    setItens([...itensMenu, item]);
     console.log(item);
-
   }
 
   function handleOrder(event) {
     event.preventDefault();
-    clientOrder (clientName, table, products, idProducts);
+    console.log(clientName, table, productsList);
   }
 
-  
   const additionProduct = (event, item, index) => {
     event.preventDefault();
-    let quantItemAddition = [...itensMenu]
-    quantItemAddition[index].qtd +=1;
-    setItens(quantItemAddition);
-    console.log(item);
+    let quantItemAdd = [...itensMenu];
+    let subtotalAdd = quantItemAdd[index].price;
+    quantItemAdd[index].qtd +=1;
+    item.subtotal = subtotalAdd * item.qtd;
+    setItens(quantItemAdd);
+    console.log(quantItemAdd);
   }
 
   const subtractionProduct = (event, item, index) => {
     event.preventDefault();
-    let quantItemSub = [...itensMenu]
+    let quantItemSub = [...itensMenu];
+    let subtotalSub = quantItemSub[index].price;
     quantItemSub[index].qtd -=1;
+    item.subtotal = subtotalSub * item.qtd;
+    if (item.qtd <= 0 || item.subtotal <= 0) {
+      // apagar item se qtd ou subtotal for zero - função excluir?
+    }
     setItens(quantItemSub);
-    console.log(item);
+    console.log(quantItemSub);
   }
 
 
@@ -94,7 +99,6 @@ function Saloon() {
       <h1>Salão</h1>
       <button onClick={(event) => logout(event)}>Sair</button>
       
-
       <main>
         <section className="menu-area">
           {
@@ -120,7 +124,7 @@ function Saloon() {
           <div className="order-details">
             <label>
               Cliente:
-              <input type="text" value={clientName} onChange={(event) => setClient(event.target.value)} />
+              <input type="text" value={clientName} onChange={(event) => setClientName(event.target.value)} />
             </label>
             <label>
               Mesa:
@@ -131,30 +135,33 @@ function Saloon() {
 
           <section>
             {
-              itensMenu.length !== 0 &&
+              // itensMenu.length !== 0 &&
               itensMenu.map((item, index) => {
-                // console.log(itensMenu);
-                idProducts = item.id;
-                total.push(item.price)
+                let orderItem = {
+                  id: item.id,
+                  qtd: item.qtd
+                }
+                productsList.push(orderItem);
+                total.push(item.subtotal);
                 const totalSome = total.reduce((acomulate, elemento) => acomulate + elemento, 0);
                 localStorage.setItem('totalFinish', totalSome);
                 return (
-                  <div key= {index} className="order-summary">
+                  <div key={index} className="order-summary">
                     <ul>
                       <li>{item.name}</li>
                       <li>{item.flavor}</li>
                       <li>{item.complement}</li>
-                      <li>R$ {item.price}</li>
+                      <li>R$ {item.subtotal}</li>
                     </ul>
-                    <button className="qtd-item-btn" onClick={(event) => additionProduct(event, item, index)}>+</button>
+                    <button className="qtd-item-btn" disabled={item.qtd === 0} onClick={(event) => subtractionProduct(event, item, index)}>-</button>
                     {item.qtd}
-                    <button className="qtd-item-btn" onClick={(event) => subtractionProduct(event, item, index)}>-</button>
+                    <button className="qtd-item-btn" onClick={(event) => additionProduct(event, item, index)}>+</button>
                   </div>
                 )
               })
             }
             <div>
-              TOTAL R$ {localStorage.getItem('totalFinish')}
+              TOTAL: R$ {localStorage.getItem('totalFinish')}
             </div>
           </section>
         </aside>

@@ -11,8 +11,7 @@ function Saloon() {
   const token = localStorage.getItem("token");
   const history = useHistory();
   const [itensMenu, setItens] = useState([]);
-  const [addition, setAddition] = useState(1);
-  const [subtraction, setSubtraction] = useState (-1);
+  const total = [];
   let idProducts = 0;
 
   function logout() {
@@ -33,18 +32,19 @@ function Saloon() {
     fetch("https://lab-api-bq.herokuapp.com/products", requestOptions) 
       .then(response => response.json())
       .then(result => {
+        localStorage.setItem('totalFinish', ' ')
         console.log(result);
         setMenu(result)
       })
       .catch(error => console.log("error", error));
   }, [])
 
-  function clientOrder(clientName, table, contador, id) {
+  function clientOrder(clientName, table, id) {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `${token}`);
     myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({ "client":{clientName}, "table":{table}, "products":[{ "id": id,"qtd": contador }]});
+    const raw = JSON.stringify({ "client":{clientName}, "table":{table}, "products":[{ "id": id,"qtd":{itensMenu} }]});
 
     const requestOptions = {
       method: "POST",
@@ -55,7 +55,7 @@ function Saloon() {
 
     fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
       .then(response => response.json())
-      .then(result => setMenu(result))
+      .then(result => {setMenu(result)})
       .catch(error => console.log("error", error));
   }
   
@@ -63,21 +63,12 @@ function Saloon() {
     item.qtd = 1;
     setItens([...itensMenu, item]); 
     console.log(item);
-    /*contador +=1;
-    const obj = {
-      id: item.id,
-      qtd: contador,
-    };
-    
-    setProducts((prevState) => [...prevState, obj]);
-    console.log(products);
-    console.log(itensMenu);*/
 
   }
 
   function handleOrder(event) {
     event.preventDefault();
-    clientOrder (clientName, table, products, idProducts, addition);
+    clientOrder (clientName, table, products, idProducts);
   }
 
   
@@ -144,6 +135,9 @@ function Saloon() {
               itensMenu.map((item, index) => {
                 // console.log(itensMenu);
                 idProducts = item.id;
+                total.push(item.price)
+                const totalSome = total.reduce((acomulate, elemento) => acomulate + elemento, 0);
+                localStorage.setItem('totalFinish', totalSome);
                 return (
                   <div key= {index} className="order-summary">
                     <ul>
@@ -159,6 +153,9 @@ function Saloon() {
                 )
               })
             }
+            <div>
+              TOTAL R$ {localStorage.getItem('totalFinish')}
+            </div>
           </section>
         </aside>
       </main>

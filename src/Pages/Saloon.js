@@ -87,7 +87,7 @@ function Saloon() {
     quantItemSub[index].qtd -=1;
     item.subtotal = subtotalSub * item.qtd;
     if (item.qtd <= 0 || item.subtotal <= 0) {
-      // apagar item se qtd ou subtotal for zero - função excluir?
+      quantItemSub.splice(index, 1);
     }
     setItens(quantItemSub);
     console.log(quantItemSub);

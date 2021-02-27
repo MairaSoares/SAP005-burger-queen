@@ -14,7 +14,7 @@ function Kitchen() {
 
   return (
     <div className="kitchen-page">
-      <h1>Cozinha</h1>
+      <h1>Kitchen</h1>
       <button onClick={(event) => logout(event)}>Sair</button>
     </div>
   )

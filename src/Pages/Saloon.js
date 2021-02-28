@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import logoSaloon from ".././images/LogoSaloonok.png";
 
 
 function Saloon() {
@@ -95,7 +96,7 @@ function Saloon() {
 
   return (
     <div className="saloon-page">
-      <img className="logo" src="./images/LogoSaloonok.png" />
+      <img className="logo" src={logoSaloon} />
       <button onClick={(event) => logout(event)}>Sair</button>
       
       <main>

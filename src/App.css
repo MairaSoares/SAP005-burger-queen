@@ -14,24 +14,19 @@
 }
 
 .login-page, .register-page {
-  background-image: url(prato.jpg);
+  background-image: url(images/prato.jpg);
 }
 
 .saloon-page{
-  background-image: url(saloon.jpg);
+  background-image: url(images/saloon.jpg);
   background-size: 100%;
 }
 
 .kitchen-page{
-  background-image: url(mesa.jpg);
+  background-image: url(images/mesa.jpg);
   text-align: center;
   color: aliceblue;
 }
-
-/* Colocar imagem
-.saloon-page, .kitchen-page {
-  background-image: url(mesa.jpg);
-} */
 
 .login-form, .register-form {
   position: absolute;
@@ -116,12 +111,13 @@ li {
   font-weight: bold;
 }
 
-.post-order-btn{
+/* Isso aqui está bloqueando os botões +/- por algum motivo... */
+/* .post-order-btn {
   margin-top: 150px;
-}
+} */
 
-.total{
-  /*margin-top: 250px;*/
+.total {
+  /* margin-top: 250px; */
   position: absolute;
 }
 
@@ -144,28 +140,31 @@ li {
   margin: 0 10px 0 10px;
 }
 
-.btntransp{
+.btntransp {
   background-color:gray;
 }
 
-.title{
-  width: 250px;
-  height: 50px;
-  padding-left: 50px;
-  background-color: rgba(128, 128, 128, 0.829);
-  margin-top: 50px;
+.logo {
+  width: 300px;
+  height: 80px;
+  /* padding-left: 50px; */
+  /* background-color: gray; */
+  /* margin-top: 50px; */
 }
 
 ::-webkit-scrollbar-track {
   background-color: #F4F4F4;
 }
+
 ::-webkit-scrollbar {
   width: 8px;
   background: gray;
 }
+
 ::-webkit-scrollbar-thumb {
   background: gray;
 }
+
 
 @media screen and (max-width: 1024px) {
 

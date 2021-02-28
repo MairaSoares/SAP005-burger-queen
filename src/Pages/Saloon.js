@@ -96,7 +96,7 @@ function Saloon() {
 
   return (
     <div className="saloon-page">
-      <h1 class= "title"><img src= "LogoSaloon.png" /></h1>
+      <img className="logo" src="images/LogoSaloon.png" />
       <button onClick={(event) => logout(event)}>Sair</button>
       
       <main>
@@ -124,11 +124,11 @@ function Saloon() {
           <div className="order-details">
             <label>
               Cliente:
-              <input type="text" value={clientName} class="btntransp"  onChange={(event) => setClientName(event.target.value)} />
+              <input type="text" value={clientName} className="btntransp"  onChange={(event) => setClientName(event.target.value)} />
             </label>
             <label>
               Mesa:
-              <input type="text" class="btntransp" value={table} onChange={(event) => setTable(event.target.value)} />
+              <input type="text" className="btntransp" value={table} onChange={(event) => setTable(event.target.value)} />
             </label>
             <br /><button className="post-order-btn" onClick={(event) => handleOrder(event)}>Enviar Pedido</button> 
           </div>

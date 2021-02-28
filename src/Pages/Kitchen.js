@@ -14,7 +14,7 @@ function Kitchen() {
 
   return (
     <div className="kitchen-page">
-      <h1><img src= "./src/LogoKitchen.png"/></h1>
+      <img className="logo" src= "images/LogoKitchen.png"/>
       <button onClick={(event) => logout(event)}>Sair</button>
     </div>
   )

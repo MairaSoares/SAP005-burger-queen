@@ -12,9 +12,10 @@ function Kitchen() {
     history.push("/");
   }
 
+
   return (
     <div className="kitchen-page">
-      <img className="logo" src= "images/LogoKitchen.png"/>
+      <img className="logo" src= "./images/LogoKitchenok.png"/>
       <button onClick={(event) => logout(event)}>Sair</button>
     </div>
   )

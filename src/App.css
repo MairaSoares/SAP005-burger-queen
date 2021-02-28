@@ -14,11 +14,11 @@
 }
 
 .login-page, .register-page {
-  background-image: url(images/prato.jpg);
+  background-image: url(./images/prato.jpg);
 }
 
 .saloon-page{
-  background-image: url(images/saloon.jpg);
+  background-image: url(./images/saloon.jpg);
   background-size: 100%;
 }
 

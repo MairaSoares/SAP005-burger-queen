@@ -63,7 +63,7 @@ function Register() {
     <div className="register-page">
       <form className="register-form">
         <center>
-          <h2 className= "logo-cantina"><img src= "./src/LogoCantina.png"/></h2>
+          <img className="logo" src= "images/LogoCantina.png"/>
           <h3>Cadastro</h3>
 
           <div className="form-group">

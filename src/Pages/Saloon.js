@@ -38,12 +38,13 @@ function Saloon() {
       .catch(error => console.log("error", error));
   }, [])
 
-  function clientOrder(clientName, table, productsList) {
+  function handleOrder(clientName, table, productsList) {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `${token}`);
     myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({ "client": {clientName}, "table": {table}, "products": {productsList} });
+    const raw = JSON.stringify({ "client": clientName, "table": table, "products": productsList });
+    console.log(raw);
 
     const requestOptions = {
       method: "POST",
@@ -54,20 +55,18 @@ function Saloon() {
 
     fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
       .then(response => response.json())
-      .then(result => {setMenu(result)})
+      .then(result => {
+        console.log(result);
+        alert(`Pedido ${result.id} criado com sucesso!`);
+      })
       .catch(error => console.log("error", error));
   }
   
-  function handleClick (item) {
+  function handleClick(item) {
     item.qtd = 1;
     item.subtotal = item.price;
     setItens([...itensMenu, item]);
     console.log(item);
-  }
-
-  function handleOrder(event) {
-    event.preventDefault();
-    console.log(clientName, table, productsList);
   }
 
   const additionProduct = (event, item, index) => {
@@ -96,7 +95,7 @@ function Saloon() {
 
   return (
     <div className="saloon-page">
-      <h1 class= "title"><img src= "LogoSaloon.png" /></h1>
+      <img className="logo" src="images/LogoSaloon.png" />
       <button onClick={(event) => logout(event)}>Sair</button>
       
       <main>
@@ -124,13 +123,13 @@ function Saloon() {
           <div className="order-details">
             <label>
               Cliente:
-              <input type="text" value={clientName} class="btntransp"  onChange={(event) => setClientName(event.target.value)} />
+              <input type="text" value={clientName} className="btntransp"  onChange={(event) => setClientName(event.target.value)} />
             </label>
             <label>
               Mesa:
-              <input type="text" class="btntransp" value={table} onChange={(event) => setTable(event.target.value)} />
+              <input type="text" className="btntransp" value={table} onChange={(event) => setTable(event.target.value)} />
             </label>
-            <br /><button className="post-order-btn" onClick={(event) => handleOrder(event)}>Enviar Pedido</button> 
+            <br /><button className="post-order-btn" onClick={() => handleOrder(clientName, table, productsList)}>Enviar Pedido</button> 
           </div>
 
           <section>

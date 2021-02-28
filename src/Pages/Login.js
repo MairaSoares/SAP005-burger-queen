@@ -58,7 +58,7 @@ function Login() {
     <div className="login-page">
       <form className="login-form">
         <center>
-          <h2><img src = "LogoCantina.png" /></h2>
+          <img className="logo" src="images/LogoCantina.png" />
           <h3>Login</h3>
 
           <div className="form-group">

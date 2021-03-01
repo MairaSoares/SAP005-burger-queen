@@ -67,7 +67,8 @@ function Saloon() {
     item.qtd = 1;
     item.subtotal = item.price;
     setItens([...itensMenu, item]);
-    console.log(item);
+    //console.log(item);
+    //console.log(itensMenu);
   }
 
   const additionProduct = (event, item, index) => {
@@ -105,7 +106,7 @@ function Saloon() {
             menu.map((menuItem, index) => {
               return (
                 <div className="products" key={index}>
-                  <button className="choose-item-btn" onClick={() => handleClick(menuItem)}>Adicionar</button>
+                  <button className="choose-item-btn" disabled={menuItem.qtd && menuItem.qtd != 0} onClick={() => handleClick(menuItem)}>Adicionar</button>
                   <ul>
                     <li>{menuItem.name}</li>
                     <li>{menuItem.flavor}</li>

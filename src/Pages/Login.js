@@ -1,10 +1,11 @@
 import { render } from "@testing-library/react";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import logo from ".././images/LogoCantinaok.png";
 
 
 function Login() {
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const [token, setToken] = useState("");
@@ -58,7 +59,7 @@ function Login() {
     <div className="login-page">
       <form className="login-form">
         <center>
-          <img className="logo" src="./images/LogoCantinaok.png" />
+          <img className="logo" src={logo}/>
           <h3>Login</h3>
 
           <div className="form-group">

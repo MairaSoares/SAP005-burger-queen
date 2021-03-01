@@ -2,6 +2,7 @@
 // import "./App.css";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import logo from ".././images/LogoCantinaok.png";
 
 
 function Register() {
@@ -63,7 +64,7 @@ function Register() {
     <div className="register-page">
       <form className="register-form">
         <center>
-          <img className="logo" src= "./images/LogoCantinaok.png"/>
+          <img className="logo" src= {logo}/>
           <h3>Cadastro</h3>
 
           <div className="form-group">

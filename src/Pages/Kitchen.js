@@ -1,9 +1,10 @@
 import React, {useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import logoKitchen from ".././images/LogoKitchenok.png";
 
 
 function Kitchen() {
-  const [order, setOrder] = useState ("");
+  const [orderKit, setOrderKit] = useState ("");
   const token = localStorage.getItem("token");
   const history = useHistory();
 
@@ -23,25 +24,37 @@ function Kitchen() {
       .then((response) => response.json())
       .then ((json) => {
       console.log(json)
-      setOrder(json)
+      setOrderKit(json)
       })
-    })
+    }, [])
 
-    
+
   return (
     <div className="kitchen-page">
-      <img className="logo" src= "./images/LogoKitchenok.png"/>
+      <img className="logo" src={logoKitchen}/>
       <button onClick={(event) => logout(event)}>Sair</button>
 
       <div className="pedido-client">
-        {order && order.map (function (item){
+        {orderKit && orderKit.map (function (item, index){
           return(
-            <div className="status-pedido" onClick= {console.log("clicou")}>
+            <div key={index} className="status-pedido" onClick= {console.log("clicou")}>
               <ul>
                 <li>Cliente: {item.client_name}</li>
                 <li>Mesa: {item.table}</li>
                 <li>Status: {item.status}</li>
                 <li>Data/Hora: {item.createdAt}</li>
+                <li>Products: {item.Products.map (function (productKit){
+                  console.log(productKit)
+                  return (
+                    <div key={productKit.id}>
+                      <ul>
+                      <li>{productKit.name}</li>
+                      <li>{productKit.qtd}</li>
+                      <li>{productKit.flavor}</li>
+                      <li>{productKit.complement}</li>
+                      </ul>
+                    </div>
+                  )})}</li>
               </ul>
               <button className= "button-kitchen">FEITO</button>
             </div>

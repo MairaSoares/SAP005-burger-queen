@@ -35,6 +35,10 @@ export const ButtonForm = styled.input`
     background-image: linear-gradient(315deg, #ba9a8e 0%, #96705b 74%);
     box-shadow:  -9px 9px 14px rgba(0, 0, 0, 0.5),
             9px -9px 14px #ffffff;
+    
+    &:hover {
+        background: #333333;
+    }
 `;
 
 export const WriteForm = styled.input`
@@ -80,11 +84,27 @@ export const HeightRegister = styled.div `
     font-weight: bold; 
 `
 
-export const DivCenter =styled.div`
+export const DivCenter = styled.div`
     width: 300px;
     margin-left: 40px;
 
 `
+export const InputRadio = styled.input`
+    margin: 4px 4px 4px 10px;
+   
+`
+export const DivRouter1 = styled.div`
+    padding-left: 30px;
+    padding-top: 20px;
+   
+`;
+
+export const DivRouter2 = styled.div`
+    padding-left: 0px;
+    padding-top: 20px;
+   
+`;
+
 export const ConfigForm = styled.div`
   position: absolute;
   top: 0;

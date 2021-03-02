@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import logo from ".././images/LogoCantinaok.png";
-import { ButtonForm, WriteForm, TittleForm, HeightLogin, ConfigForm, DivCenter } from "../Components/styleLoginRegister";
+import { ButtonForm, WriteForm, TittleForm, HeightLogin, ConfigForm, DivCenter, DivRouter2 } from "../Components/styleLoginRegister";
 
 
 function Login() {
@@ -65,10 +65,9 @@ function Login() {
           <div>
             <label>
               E-mail:
-              <WriteForm type="email" placeholder="Informar e-mail" value={email} onChange={(event) => setEmail(event.target.value)} />
+              <WriteForm type="email" placeholder= "Informar e-mail" value={email} onChange={(event) => setEmail(event.target.value)} />
             </label>
           </div>
-
           <div>
             <label>
               Senha:
@@ -82,7 +81,9 @@ function Login() {
           <div>
             <ButtonForm type="submit" value="ENTRAR" onClick={(event) => handleSubmit(event)}/>
           </div>
-          <p> Não tem conta? <Link to="/register">Cadastre-se!</Link></p>
+          <DivRouter2> 
+            Não tem conta? <NavLink to="/register" style={{'color': '#1a1a1a','fontWeight': 'bold'}}>Cadastre-se!</NavLink>
+          </DivRouter2>
         </DivCenter>
 
       </ConfigForm>

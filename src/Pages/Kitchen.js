@@ -27,6 +27,7 @@ function Kitchen() {
       setOrderKit(json)
       })
     }, [])
+  //o [] evita que se faça loop de pedidos no console
 
 
   return (

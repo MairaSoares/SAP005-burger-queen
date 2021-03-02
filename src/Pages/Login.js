@@ -1,7 +1,7 @@
-import { render } from "@testing-library/react";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from ".././images/LogoCantinaok.png";
+import { ButtonForm, WriteForm, TittleForm, HeightLogin, ConfigForm, DivCenter } from "../Components/styleLoginRegister";
 
 
 function Login() {
@@ -57,39 +57,35 @@ function Login() {
   
   return (
     <div className="login-page">
-      <form className="login-form">
-        <center>
+      <ConfigForm>
+        <HeightLogin>
           <img className="logo" src={logo}/>
-          <h3>Login</h3>
+          <TittleForm>Login</TittleForm>
 
-          <div className="form-group">
+          <div>
             <label>
               E-mail:
-              <input type="email" className="form-control" placeholder="Informar e-mail" value={email} onChange={(event) => setEmail(event.target.value)} />
+              <WriteForm type="email" placeholder="Informar e-mail" value={email} onChange={(event) => setEmail(event.target.value)} />
             </label>
           </div>
 
-          <div className="form-group">
+          <div>
             <label>
               Senha:
-              <input type="password" className="form-control" placeholder="Informar senha" value={password} onChange={(event) => setPassword(event.target.value)} />
+              <WriteForm type="password" placeholder="Informar senha" value={password} onChange={(event) => setPassword(event.target.value)} />
             </label>
           </div>
+        </HeightLogin>
 
-          <div className="form-group">
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheck1" />
-              <label className="custom-control-label" htmlFor="customCheck1">Lembrar-me</label>
-            </div>
+        
+        <DivCenter>
+          <div>
+            <ButtonForm type="submit" value="ENTRAR" onClick={(event) => handleSubmit(event)}/>
           </div>
-          <label>
-            <input type="submit" className="btn btn-dark btn-lg btn-block" value="Entrar" onClick={(event) => handleSubmit(event)} />
-          </label>
-          <p>
-            Não tem conta? <Link to="/register">Cadastre-se!</Link>
-          </p>
-        </center>
-      </form>
+          <p> Não tem conta? <Link to="/register">Cadastre-se!</Link></p>
+        </DivCenter>
+
+      </ConfigForm>
     </div>
   )
 }

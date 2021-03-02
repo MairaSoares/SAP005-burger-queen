@@ -152,6 +152,18 @@ li {
   /* margin-top: 50px; */
 }
 
+.kitchen-orders {
+  display: flex;
+  margin-left: 30%;
+}
+
+.pending-orders, .preparing-orders {
+  text-align: left;
+  border: solid 1px white;
+  margin: 10px;
+  padding: 10px;
+}
+
 ::-webkit-scrollbar-track {
   background-color: #F4F4F4;
 }

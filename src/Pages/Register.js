@@ -1,8 +1,8 @@
-// import logo from "./logo.svg";
-// import "./App.css";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from ".././images/LogoCantinaok.png";
+import {ButtonForm, WriteForm, TittleForm, ConfigForm, HeightRegister, DivCenter } from "../Components/styleLoginRegister";
+
 
 
 function Register() {
@@ -62,26 +62,33 @@ function Register() {
 
   return (
     <div className="register-page">
-      <form className="register-form">
-        <center>
+      <ConfigForm>
+        <HeightRegister>
           <img className="logo" src= {logo}/>
-          <h3>Cadastro</h3>
+          <TittleForm>Cadastro</TittleForm>
 
-          <div className="form-group">
+          <div>
+            <label>
+              Nome:
+              <WriteForm type="text" placeholder="Nome do funcionário" value={name} onChange={(event) => setName(event.target.value)} />
+            </label>
+          </div>
+
+          <div>
             <label>
               E-mail
-            <input type="email" className="form-control" placeholder="exemplo@email.com" value={email} onChange={(event) => setEmail(event.target.value)} />
+            <WriteForm type="email" placeholder="exemplo@email.com" value={email} onChange={(event) => setEmail(event.target.value)} />
             </label>
           </div>
 
-          <div className="form-group">
+          <div>
             <label>
               Senha:
-              <input type="password" className="form-control" placeholder="mínimo 6 caracteres" value={password} onChange={(event) => setPassword(event.target.value)} />
+              <WriteForm type="password" placeholder="Senha" value={password} onChange={(event) => setPassword(event.target.value)} />
             </label>
           </div>
 
-          <div className="form-group">
+          <div>
             <label>
               Área de Trabalho:
               <input type="radio" className="radio" name="role" value="waiter" onChange={(event) => setRole(event.target.value)} />Salão
@@ -89,28 +96,24 @@ function Register() {
             </label>
           </div>
 
-          <div className="form-group">
+          <div>
             <label>
               Restaurante:
-              <input type="text" className="form-control" placeholder="nome do restaurante" value={restaurant} onChange={(event) => setRestaurant(event.target.value)} />
+              <WriteForm type="text" placeholder="Nome do Restaurante" value={restaurant} onChange={(event) => setRestaurant(event.target.value)} />
             </label>
           </div>
+        </HeightRegister>
 
-          <div className="form-group">
-            <label>
-              Nome:
-              <input type="text" className="form-control" placeholder="nome do funcionário" value={name} onChange={(event) => setName(event.target.value)} />
-            </label>
+        <DivCenter>
+          <div>
+              <ButtonForm type="submit" value="Enviar" onClick={(event) => handleSubmit(event)} />
           </div>
-
-          <label>
-            <input type="submit" className="btn btn-dark btn-lg btn-block" value="Enviar" onClick={(event) => handleSubmit(event)} />
-          </label>
           <p>
-            Já tem conta? <Link to="/">Entrar!</Link>
+              Já tem conta? <Link to="/">Entrar!</Link>
           </p>
-        </center>
-      </form>
+        </DivCenter>
+
+      </ConfigForm>
     </div>
   )
 }

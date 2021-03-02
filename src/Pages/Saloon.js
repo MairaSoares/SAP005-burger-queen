@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoSaloon from ".././images/LogoSaloonok.png";
+import { SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout } from "../Components/styleSaloon";
 
 
 function Saloon() {
@@ -89,6 +90,7 @@ function Saloon() {
     item.subtotal = subtotalSub * item.qtd;
     if (item.qtd <= 0 || item.subtotal <= 0) {
       quantItemSub.splice(index, 1);
+      localStorage.removeItem('totalFinish')
     }
     setItens(quantItemSub);
     console.log(quantItemSub);
@@ -98,28 +100,29 @@ function Saloon() {
   return (
     <div className="saloon-page">
       <img className="logo" src={logoSaloon} />
-      <button onClick={(event) => logout(event)}>Sair</button>
+      <ButtonLogout onClick={(event) => logout(event)}>Sair</ButtonLogout>
       
       <main>
-        <section className="menu-area">
+        <SectionMenu>
           {
             menu.map((menuItem, index) => {
               return (
-                <div className="products" key={index}>
-                  <button className="choose-item-btn" disabled={menuItem.qtd && menuItem.qtd != 0} onClick={() => handleClick(menuItem)}>Adicionar</button>
-                  <ul>
-                    <li>{menuItem.name}</li>
-                    <li>{menuItem.flavor}</li>
-                    <li>{menuItem.complement}</li>
-                    <li>R$ {menuItem.price}</li>
-                    {/* <li>{menuItem.type}</li>
-                    <li>{menuItem.sub_type}</li> */}
-                  </ul>
+                <div key={index}>
+                  <ButtonMenu disabled={menuItem.qtd && menuItem.qtd != 0} onClick={() => handleClick(menuItem)}>
+                    <ul>
+                        <li>{menuItem.name}</li>
+                        <li>{menuItem.flavor}</li>
+                        <li>{menuItem.complement}</li>
+                        <li>R$ {menuItem.price}</li>
+                        {/* <li>{menuItem.type}</li>
+                        <li>{menuItem.sub_type}</li> */}
+                    </ul>
+                  </ButtonMenu>
                 </div>
               )
             })
           }
-        </section>
+        </SectionMenu>
 
         <aside className="order-info">
           <div className="order-details">
@@ -154,9 +157,9 @@ function Saloon() {
                       <li>{item.complement}</li>
                       <li>R$ {item.subtotal}</li>
                     </ul>
-                    <button className="qtd-item-btn" disabled={item.qtd === 0} onClick={(event) => subtractionProduct(event, item, index)}>-</button>
+                    <ButtonQtd disabled={item.qtd === 0} onClick={(event) => subtractionProduct(event, item, index)}>-</ButtonQtd>
                     {item.qtd}
-                    <button className="qtd-item-btn" onClick={(event) => additionProduct(event, item, index)}>+</button>
+                    <ButtonQtd onClick={(event) => additionProduct(event, item, index)}>+</ButtonQtd>
                   </div>
                 )
               })

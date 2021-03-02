@@ -1,6 +1,7 @@
 import React, {useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoKitchen from ".././images/LogoKitchenok.png";
+import {ButtonLogout} from "../Components/styleSaloon";
 
 
 function Kitchen() {
@@ -33,7 +34,7 @@ function Kitchen() {
   return (
     <div className="kitchen-page">
       <img className="logo" src={logoKitchen}/>
-      <button onClick={(event) => logout(event)}>Sair</button>
+      <ButtonLogout onClick={(event) => logout(event)}>Sair</ButtonLogout>
 
       <div className="pedido-client">
         {orderKit && orderKit.map (function (item, index){

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import logo from ".././images/LogoCantinaok.png";
-import {ButtonForm, WriteForm, TittleForm, ConfigForm, HeightRegister, DivCenter } from "../Components/styleLoginRegister";
+import {ButtonForm, WriteForm, TittleForm, ConfigForm, HeightRegister, DivCenter, InputRadio, DivRouter1 } from "../Components/styleLoginRegister";
 
 
 
@@ -91,8 +91,8 @@ function Register() {
           <div>
             <label>
               Área de Trabalho:
-              <input type="radio" className="radio" name="role" value="waiter" onChange={(event) => setRole(event.target.value)} />Salão
-              <input type="radio" className="radio" name="role" value="chef" onChange={(event) => setRole(event.target.value)} />Cozinha
+              <InputRadio type="radio" name="role" value="waiter" onChange={(event) => setRole(event.target.value)} />Salão
+              <InputRadio type="radio" name="role" value="chef" onChange={(event) => setRole(event.target.value)} />Cozinha
             </label>
           </div>
 
@@ -108,9 +108,9 @@ function Register() {
           <div>
               <ButtonForm type="submit" value="Enviar" onClick={(event) => handleSubmit(event)} />
           </div>
-          <p>
-              Já tem conta? <Link to="/">Entrar!</Link>
-          </p>
+          <DivRouter1>
+            Já tem conta? <NavLink to="/" style={{'color': '#1a1a1a','fontWeight': 'bold'}}>Entrar!</NavLink>
+          </DivRouter1>
         </DivCenter>
 
       </ConfigForm>

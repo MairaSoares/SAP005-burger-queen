@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoSaloon from ".././images/LogoSaloonok.png";
-import { SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout } from "../Components/styleSaloon";
+import IconLogout from ".././images/IconLogout.png";
+import { SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout, CardSaloon, OrderDetails, MainSaloon, Summary, Total, InputSaloon, ButtonSubmit } from "../Components/styleSaloon";
+
 
 
 function Saloon() {
@@ -15,10 +17,14 @@ function Saloon() {
   const [itensMenu, setItens] = useState([]);
   const total = [];
 
+  
+
   function logout() {
     localStorage.clear();
     history.push("/");
   }
+
+
 
   useEffect(() => { 
     const myHeaders = new Headers();
@@ -96,80 +102,74 @@ function Saloon() {
     console.log(quantItemSub);
   }
 
-
   return (
     <div className="saloon-page">
       <img className="logo" src={logoSaloon} />
-      <ButtonLogout onClick={(event) => logout(event)}>Sair</ButtonLogout>
-      
-      <main>
+      <ButtonLogout onClick={(event) => logout(event)}><img src={IconLogout} /></ButtonLogout>
+        
+      <MainSaloon >
         <SectionMenu>
+          <ButtonSubmit onClick={() => handleOrder(clientName, table, productsList)}>Enviar Pedido</ButtonSubmit> 
+          <OrderDetails>
+            <InputSaloon type="text"  pattern=".+" required value={clientName}  onChange={(event) => setClientName(event.target.value)} />
+            <label>Cliente</label>
+            <InputSaloon type="text" value={table} onChange={(event) => setTable(event.target.value)} />
+            <label>Mesa</label>
+          </OrderDetails>
+
           {
             menu.map((menuItem, index) => {
               return (
                 <div key={index}>
-                  <ButtonMenu disabled={menuItem.qtd && menuItem.qtd != 0} onClick={() => handleClick(menuItem)}>
-                    <ul>
-                        <li>{menuItem.name}</li>
-                        <li>{menuItem.flavor}</li>
-                        <li>{menuItem.complement}</li>
-                        <li>R$ {menuItem.price}</li>
-                        {/* <li>{menuItem.type}</li>
-                        <li>{menuItem.sub_type}</li> */}
-                    </ul>
-                  </ButtonMenu>
+                  <CardSaloon>
+                    <h6><b><font size="4">{menuItem.name}</font></b></h6>
+                    <p>R$ {menuItem.price}</p>
+                    <p>{menuItem.flavor}</p>
+                    <p>{menuItem.complement}</p>
+                    {/* <li>{menuItem.type}</li>
+                    <li>{menuItem.sub_type}</li> */}
+                    <ButtonMenu disabled={menuItem.qtd && menuItem.qtd != 0} onClick={() => handleClick(menuItem)}>Adicionar</ButtonMenu>
+                  </CardSaloon>
                 </div>
               )
             })
           }
         </SectionMenu>
 
-        <aside className="order-info">
-          <div className="order-details">
-            <label>
-              Cliente:
-              <input type="text" value={clientName} className="btntransp"  onChange={(event) => setClientName(event.target.value)} />
-            </label>
-            <label>
-              Mesa:
-              <input type="text" className="btntransp" value={table} onChange={(event) => setTable(event.target.value)} />
-            </label>
-            <br /><button className="post-order-btn" onClick={() => handleOrder(clientName, table, productsList)}>Enviar Pedido</button> 
-          </div>
-
-          <section>
-            {
+          <aside className="order-info">
+            <section>
+              <Total>
+                TOTAL: R$ {localStorage.getItem('totalFinish')}
+              </Total>
+              {
               //itensMenu.length !== 0 &&
-              itensMenu.map((item, index) => {
-                let orderItem = {
-                  id: item.id,
-                  qtd: item.qtd
-                }
-                productsList.push(orderItem);
-                total.push(item.subtotal);
-                const totalSome = total.reduce((acomulate, elemento) => acomulate + elemento, 0);
-                localStorage.setItem('totalFinish', totalSome);
-                return (
-                  <div key={index} className="order-summary">
-                    <ul>
-                      <li>{item.name}</li>
-                      <li>{item.flavor}</li>
-                      <li>{item.complement}</li>
-                      <li>R$ {item.subtotal}</li>
-                    </ul>
-                    <ButtonQtd disabled={item.qtd === 0} onClick={(event) => subtractionProduct(event, item, index)}>-</ButtonQtd>
-                    {item.qtd}
-                    <ButtonQtd onClick={(event) => additionProduct(event, item, index)}>+</ButtonQtd>
-                  </div>
-                )
-              })
-            }
-            <div>
-              TOTAL: R$ {localStorage.getItem('totalFinish')}
-            </div>
-          </section>
-        </aside>
-      </main>
+                itensMenu.map((item, index) => {
+                  let orderItem = {
+                    id: item.id,
+                    qtd: item.qtd
+                  }
+                  productsList.push(orderItem);
+                  total.push(item.subtotal);
+                  const totalSome = total.reduce((acomulate, elemento) => acomulate + elemento, 0);
+                  localStorage.setItem('totalFinish', totalSome);
+                  return (
+                    <Summary key={index}>
+                      <ul>
+                        <li>{item.name}</li>
+                        <li>{item.flavor}</li>
+                        <li>{item.complement}</li>
+                        <li>R$ {item.subtotal}</li>
+                      </ul>
+                      <ButtonQtd disabled={item.qtd === 0} onClick={(event) => subtractionProduct(event, item, index)}>-</ButtonQtd>
+                      {item.qtd}
+                      <ButtonQtd onClick={(event) => additionProduct(event, item, index)}>+</ButtonQtd>
+                    </Summary>
+                  )
+                })
+              }
+            </section>
+          </aside>
+      </MainSaloon>
     </div>
   )
 }

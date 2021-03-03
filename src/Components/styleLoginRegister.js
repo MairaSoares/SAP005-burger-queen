@@ -43,7 +43,7 @@ export const ButtonForm = styled.input`
 
 export const WriteForm = styled.input`
 
-    font-family: Poppins-Medium;
+    font-family: monospace;
     font-size: 15px;
     line-height: 1.5;
     color: #666666;

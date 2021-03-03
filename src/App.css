@@ -56,12 +56,6 @@ main {
   align-content: center;
 }
 
-
-/* .img-product {
-  width: 150px;
-  height: 150px;
-} */
-
 ul {
   padding-inline-start: 0;
 }
@@ -82,31 +76,6 @@ li {
   background-color: transparent;
   margin-left: 310px;
   font-weight: bold;
-}
-
-.total {
-  /* margin-top: 250px; */
-  position: absolute;
-}
-
-.order-details {
-  margin: 5px;
-  padding: 10px;
-  text-align: right;
-  display: inline-block;
-  position: absolute;
-  width: 250px;
-}
-
-.order-summary {
-  margin: 50px;
-  text-align: center;
-  margin-top: 150px;
-}
-
-
-.btntransp {
-  background-color:gray;
 }
 
 .logo {

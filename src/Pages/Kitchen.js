@@ -1,6 +1,7 @@
 import React, {useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoKitchen from ".././images/LogoKitchenok.png";
+import IconLogout from ".././images/IconLogout.png";
 import {ButtonLogout} from "../Components/styleSaloon";
 
 
@@ -86,7 +87,7 @@ function Kitchen() {
   return (
     <div className="kitchen-page">
       <img className="logo" src={logoKitchen}/>
-      <ButtonLogout onClick={(event) => logout(event)}>Sair</ButtonLogout>
+      <ButtonLogout onClick={(event) => logout(event)}><img src={IconLogout} /></ButtonLogout>
 
       <main className="orders-area">
         <section className="kitchen-orders">

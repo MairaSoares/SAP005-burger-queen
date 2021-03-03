@@ -14,16 +14,16 @@
 }
 
 .login-page, .register-page {
-  background-image: url(./images/prato.jpg);
+  background-image: url(./images/pratoOk.jpg);
 }
 
 .saloon-page{
-  background-image: url(./images/saloon.jpg);
+  background-image: url(./images/saloonOk.jpg);
   background-size: 100%;
 }
 
 .kitchen-page{
-  background-image: url(images/mesa.jpg);
+  background-image: url(images/mesaOk.jpg);
   text-align: center;
   color: aliceblue;
 }

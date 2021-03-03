@@ -63,7 +63,6 @@ export const ButtonMenu = styled.button`
   text-decoration: none;
   
   background-color: #bdd4e7;
-  color:#fff;
   box-shadow:0 5px 0 #bdd4e7;
 
   &:hover{

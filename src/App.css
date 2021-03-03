@@ -28,6 +28,27 @@
   color: aliceblue;
 }
 
+.login-form, .register-form {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 300px;
+}
+
+.login-form {
+  height: 400px;
+}
+
+.register-form {
+  height: 515px;
+}
+
+.radio {
+  margin: 4px 4px 4px 10px;
+}
 
 main {
   margin: 0 auto;
@@ -63,7 +84,6 @@ li {
   font-weight: bold;
 }
 
-
 .total {
   /* margin-top: 250px; */
   position: absolute;
@@ -95,6 +115,22 @@ li {
   /* padding-left: 50px; */
   /* background-color: gray; */
   /* margin-top: 50px; */
+}
+
+.kitchen-orders {
+  display: flex;
+  margin-left: 30%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.pending-orders, .preparing-orders {
+  display: inline-block;
+  text-align: left;
+  border: solid 1px white;
+  margin: 10px;
+  padding: 10px;
+  width: 250px;
 }
 
 ::-webkit-scrollbar-track {

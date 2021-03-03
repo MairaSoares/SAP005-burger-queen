@@ -59,7 +59,8 @@ function Saloon() {
       .then(response => response.json())
       .then(result => {
         console.log(result);
-        alert(`Pedido criado com sucesso!`);
+        alert(`Pedido ${result.id} criado com sucesso!`);
+        // Limpar form ao enviar pedido !
       })
       .catch(error => console.log("error", error));
   }
@@ -110,12 +111,12 @@ function Saloon() {
                 <div key={index}>
                   <ButtonMenu disabled={menuItem.qtd && menuItem.qtd != 0} onClick={() => handleClick(menuItem)}>
                     <ul>
-                        <li>{menuItem.name}</li>
-                        <li>{menuItem.flavor}</li>
-                        <li>{menuItem.complement}</li>
-                        <li>R$ {menuItem.price}</li>
-                        {/* <li>{menuItem.type}</li>
-                        <li>{menuItem.sub_type}</li> */}
+                      <li>{menuItem.name}</li>
+                      <li>{menuItem.flavor}</li>
+                      <li>{menuItem.complement}</li>
+                      <li>R$ {menuItem.price}</li>
+                      {/* <li>{menuItem.type}</li>
+                      <li>{menuItem.sub_type}</li> */}
                     </ul>
                   </ButtonMenu>
                 </div>

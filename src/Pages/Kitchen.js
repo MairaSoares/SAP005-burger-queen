@@ -10,6 +10,7 @@ function Kitchen() {
   const history = useHistory();
   const [pendingOrders, setPendingOrders] = useState([]);
   const [preparingOrders, setPreparingOrders] = useState([]);
+  let totalTime = "";
 
   function logout() {
     localStorage.clear();
@@ -35,41 +36,50 @@ function Kitchen() {
       })
   }, [])
 
-    function updateStatus(orderId, orderStatus) {
-      const myHeaders = new Headers();
-      myHeaders.append("Authorization", `${token}`);
-      myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+  function updateStatus(orderId, orderStatus) {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `${token}`);
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-      const urlencoded = new URLSearchParams();
-      urlencoded.append("status", `${orderStatus}`);
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("status", `${orderStatus}`);
 
-      const requestOptions = {
-        method: 'PUT',
-        headers: myHeaders,
-        body: urlencoded,
-        redirect: 'follow'
-      };
+    const requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow"
+    };
 
-      fetch(`https://lab-api-bq.herokuapp.com/orders/${orderId}`, requestOptions)
-        .then(response => response.json())
-        .then(order => {
-          console.log(order)
-          setNewStatus(order.status);
-        })
-        .catch(error => console.log('error', error));
-    }
+    fetch(`https://lab-api-bq.herokuapp.com/orders/${orderId}`, requestOptions)
+      .then(response => response.json())
+      .then(order => {
+        console.log(order);
+        setNewStatus(order.status);
+      })
+      .catch(error => console.log("error", error));
+  }
 
-    function handlePrepare(event, order) {
-      event.preventDefault();
-      order.status = "preparing";
-      updateStatus(order.id, order.status);
-    }
+  function handlePrepare(event, order) {
+    event.preventDefault();
+    order.status = "preparing";
+    updateStatus(order.id, order.status);
+  }
 
-    function handleReady(event, order) {
-      event.preventDefault();
-      order.status = "ready";
-      updateStatus(order.id, order.status);
-    }
+  function millisecToMinSec(millis) {
+    let minutes = Math.floor(millis / 60000);
+    let seconds = ((millis % 60000) / 1000).toFixed(0);
+    return (seconds == 60? (minutes + 1) + ": 00": minutes + ":" + (seconds <10? "0": "") + seconds);
+  }
+
+  function handleReady(event, order, created, updated) {
+    event.preventDefault();
+    order.status = "ready";
+    updateStatus(order.id, order.status);
+    const diff = (updated - created);
+    totalTime = millisecToMinSec(diff);
+    console.log(totalTime);
+  }
 
 
   return (
@@ -79,16 +89,53 @@ function Kitchen() {
 
       <main className="orders-area">
         <section className="kitchen-orders">
-          {pendingOrders && pendingOrders.map (function (item, index){
+          {pendingOrders && pendingOrders.map (function (item, index) {
+            const millisec = Date.parse(item.createdAt);
+            // const millisec2 = Date.parse(item.updatedAt);
+            const fullDate = new Date(millisec);
+            const newFormatDate = fullDate.toLocaleString();
             return (
               <div key={index} className="pending-orders">
                 <ul>
                   <li>Pedido: {item.id} | Mesa: {item.table}</li>
                   <li>Cliente: {item.client_name}</li>
                   <li>Status: {item.status}</li>
-                  <li>Data/Hora: {item.createdAt}</li>
-                  <li>Itens do pedido: {item.Products.map (function (productKit) {
+                  <li>Data/Hora: {newFormatDate}</li>
+                  {/* <br />
+                  <li>{item.Products.map (function (productKit) {
                     // console.log(productKit)
+                    return (
+                      <div key={productKit.id}>
+                        <ul>
+                          <li>{productKit.qtd} x {productKit.name}</li>
+                          <li >{productKit.flavor} {productKit.complement}</li>
+                        </ul>
+                      </div>
+                    )
+                  })}
+                  </li> */}
+                </ul>
+                <button className="button-kitchen" onClick={(event) => handlePrepare(event, item)}>Preparar</button>
+              </div>
+            )
+          }
+          )}
+        </section>
+
+        <section className="kitchen-orders">
+          {preparingOrders && preparingOrders.map (function (item, index){
+            const millisec1 = Date.parse(item.createdAt);
+            const millisec2 = Date.parse(item.updatedAt);
+            const fullDate = new Date(millisec1);
+            const newFormatDate = fullDate.toLocaleString();
+            return (
+              <div key={index} className="preparing-orders">
+                <ul>
+                  <li>Pedido: {item.id} | Mesa: {item.table}</li>
+                  <li>Cliente: {item.client_name}</li>
+                  <li>Status: {item.status}</li>
+                  <li>Data/Hora: {newFormatDate}</li><br />
+                  <li>{item.Products.map (function (productKit) {
                     return (
                       <div key={productKit.id}>
                         <ul>
@@ -101,36 +148,7 @@ function Kitchen() {
                   })}
                   </li>
                 </ul>
-                <button className="button-kitchen" onClick={(event) => handlePrepare(event, item)}>Preparar</button>
-              </div>
-            )
-          }
-          )}
-        </section>
-
-        <section className="kitchen-orders">
-          {preparingOrders && preparingOrders.map (function (item, index){
-            return (
-              <div key={index} className="preparing-orders">
-                <ul>
-                  <li>Pedido: {item.id} | Mesa: {item.table}</li>
-                  <li>Cliente: {item.client_name}</li>
-                  <li>Status: {item.status}</li>
-                  <li>Data/Hora: {item.createdAt}</li>
-                  <li>Itens do pedido: {item.Products.map (function (productKit) {
-                    return (
-                      <div key={productKit.id}>
-                        <ul>
-                          <li>{productKit.qtd} {productKit.name}</li>
-                          <li>{productKit.flavor}</li>
-                          <li>{productKit.complement}</li>
-                        </ul>
-                      </div>
-                    )
-                  })}
-                  </li>
-                </ul>
-                <button className="button-kitchen" onClick={(event) => handleReady(event, item)}>Pronto</button>
+                <button className="button-kitchen" onClick={(event) => handleReady(event, item, millisec1, millisec2)}>Liberar</button>
               </div>
             )
           }

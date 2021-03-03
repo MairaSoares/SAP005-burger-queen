@@ -1,3 +1,4 @@
+import { render } from "@testing-library/react";
 import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import logo from ".././images/LogoCantinaok.png";
@@ -65,7 +66,7 @@ function Login() {
           <div>
             <label>
               E-mail:
-              <WriteForm type="email" placeholder= "Informar e-mail" value={email} onChange={(event) => setEmail(event.target.value)} />
+              <WriteForm type="email" placeholder="Informar e-mail" value={email} onChange={(event) => setEmail(event.target.value)} />
             </label>
           </div>
           <div>
@@ -76,7 +77,6 @@ function Login() {
           </div>
         </HeightLogin>
 
-        
         <DivCenter>
           <div>
             <ButtonForm type="submit" value="ENTRAR" onClick={(event) => handleSubmit(event)}/>

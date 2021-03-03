@@ -1,8 +1,9 @@
+// import logo from "./logo.svg";
+// import "./App.css";
 import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import logo from ".././images/LogoCantinaok.png";
-import {ButtonForm, WriteForm, TittleForm, ConfigForm, HeightRegister, DivCenter, InputRadio, DivRouter1 } from "../Components/styleLoginRegister";
-
+import { ButtonForm, WriteForm, TittleForm, ConfigForm, HeightRegister, DivCenter, InputRadio, DivRouter1 } from "../Components/styleLoginRegister";
 
 
 function Register() {
@@ -106,7 +107,7 @@ function Register() {
 
         <DivCenter>
           <div>
-              <ButtonForm type="submit" value="Enviar" onClick={(event) => handleSubmit(event)} />
+            <ButtonForm type="submit" value="Enviar" onClick={(event) => handleSubmit(event)} />
           </div>
           <DivRouter1>
             Já tem conta? <NavLink to="/" style={{'color': '#1a1a1a','fontWeight': 'bold'}}>Entrar!</NavLink>

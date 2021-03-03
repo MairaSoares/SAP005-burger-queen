@@ -65,7 +65,8 @@ function Saloon() {
       .then(response => response.json())
       .then(result => {
         console.log(result);
-        alert(`Pedido criado com sucesso!`);
+        alert(`Pedido ${result.id} criado com sucesso!`);
+        // Limpar form ao enviar pedido !
       })
       .catch(error => console.log("error", error));
   }

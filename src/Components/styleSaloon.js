@@ -11,29 +11,23 @@ export const SectionMenu = styled.section`
     height: 500PX;
     margin-right: 3%;
     padding: 1%;
-    padding-top: 30px;
-    margin-left: 50px;
-    border-radius: 25px;
-    background-color: white;
+    padding-top: 35px;
+    margin-left: 40px;
+    background-color: #e8e8e8;
     font-weight: bold;
-    margin-top:50px;
     position: relative;
+    margin-top: -100px;
     
     
 `
 export const OrderDetails = styled.div`
     position: relative;
-    margin-right: 100px;
-    margin-top: 15px;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    margin-right: 200px;
+    margin-left: 600px;
     padding: 10px;
     border-radius: 0 0 2px 2px;
-    background-color: #FFF;
+    background-color: #e8e8e8;
 
-`
-
-export const MainSaloon = styled.div`
-    position: relative;
 `
 
 export const ButtonQtd = styled.button`
@@ -62,12 +56,14 @@ export const ButtonMenu = styled.button`
   display:inline-block;
   text-decoration: none;
   
-  background-color: #bdd4e7;
-  box-shadow:0 5px 0 #bdd4e7;
+  background-color: #3CB371;
+  box-shadow:0 5px 0 #008000;
+
+
 
   &:hover{
-    background: #90d5ec;
-    box-shadow:0 5px 0 #90d5ec;
+    background: #3CB371;
+    box-shadow:0 5px 0 #00FF7F;
   }
 
   &::active{
@@ -87,8 +83,7 @@ export const ButtonMenu = styled.button`
 `
 export const ButtonSubmit = styled.button`
 
-    margin-left: 350px;
-    width: 200px;
+    margin-left: 230px;
     height: 50px;
     border-radius: 25px;
     background: #57b846;
@@ -100,7 +95,7 @@ export const ButtonSubmit = styled.button`
 
     border: none;
     outline:none;
-    background-color: #bdd4e7;
+    background-color: #3CB371;
     box-shadow:  -9px 9px 14px rgba(0, 0, 0, 0.5);
     
 `
@@ -115,8 +110,7 @@ export const ButtonLogout = styled.button`
 
 export const CardSaloon = styled.div`
     
-    margin: 30px;
-    margin-bottom: 50px;
+    margin: 10px;
     border: ridge 10px rgb(255, 255, 255);
 
     font-family: "monospace";
@@ -126,9 +120,9 @@ export const CardSaloon = styled.div`
     line-height: 10px;
     letter-spacing: .4px;
     background: #eee;
-    padding-top: 15px;
-    padding-left: 20px;
-    padding-right: 30px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 15px;
 
     &:hover {
         box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -137,19 +131,6 @@ export const CardSaloon = styled.div`
 
 `
 
-export const TextCard = styled.p`
-    background: #FFF;
-    padding: 20px;
-    min-height: 200px;
-    margin-bottom: 0px;
-`
-export const NameTable = styled.div`
-
-  text-align: right;
-  display: inline-block;
-  position: absolute;
-  width: 250px;
-`
 export const Summary = styled. div`
     text-align: center;
     margin-top: 40px;
@@ -159,28 +140,31 @@ export const Summary = styled. div`
 
 export const Total = styled.div`
     text-align: center;
-    margin-right: 70px;
+    display: flex;
+    margin-top: -190px;
+    
 `
 export const InputSaloon = styled.input`
     border: 0;
-    border-bottom: 2px solid #9e9e9e;
+    border-bottom: 2px solid #3CB371;
     outline: none;
     transition: .2s ease-in-out;
     box-sizing: border-box;
     width: 100%;
     font-size: 1rem;
+    background-color: Transparent;
     
 
     &:valid{
-        border-bottom: 2px solid #bdd4e7;
+        border-bottom: 2px solid #3CB371;
     }
     
     &:focus{
-        border-bottom: 2px solid #bdd4e7;
+        border-bottom: 2px solid #3CB371;
     }
 
     &: focus + label {
-        color: #bdd4e7;
+        color: #3CB371;
         font-size: .8rem;
         top: -30px;
         pointer-events: none;
@@ -202,4 +186,42 @@ export const LabelSaloon = styled.label`
   cursor: text;
   transition: .2s ease-in-out;
   box-sizing: border-box;
+`
+
+export const OrderInfo = styled.aside`
+
+    vertical-align: top;
+    display: inline-flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    width: 380px;
+    height: 390PX;
+    margin-right: 2%;
+    padding: 1%;
+    padding-top: 25px;
+    margin-left: -7px;
+    background-color: #e8e8e8;
+    font-weight: bold;
+    position: relative;
+    margin-top: 20px;
+
+`
+
+export const OrderInfo2 = styled.aside`
+
+    vertical-align: top;
+    display: inline-flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    width: 300px;
+    height: 390PX;
+    margin-right: 2%;
+    padding: 1%;
+    padding-top: 25px;
+    margin-left: 20px;
+    background-color: #e8e8e8;
+    font-weight: bold;
+    position: relative;
+    margin-top: 20px;
+
 `

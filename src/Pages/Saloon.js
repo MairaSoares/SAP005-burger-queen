@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoSaloon from ".././images/LogoSaloonok.png";
 import IconLogout from ".././images/IconLogout.png";
-import { SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout, CardSaloon, OrderDetails, MainSaloon, Summary, Total, InputSaloon, ButtonSubmit } from "../Components/styleSaloon";
+import { SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout, CardSaloon, OrderDetails, Summary, Total, InputSaloon, ButtonSubmit, OrderInfo,  OrderInfo2 } from "../Components/styleSaloon";
 
 
 
@@ -108,17 +108,15 @@ function Saloon() {
     <div className="saloon-page">
       <img className="logo" src={logoSaloon} />
       <ButtonLogout onClick={(event) => logout(event)}><img src={IconLogout} /></ButtonLogout>
-        
-      <MainSaloon >
-        <SectionMenu>
-          <ButtonSubmit onClick={() => handleOrder(clientName, table, productsList)}>Enviar Pedido</ButtonSubmit> 
           <OrderDetails>
-            <InputSaloon type="text"  pattern=".+" required value={clientName}  onChange={(event) => setClientName(event.target.value)} />
+            <InputSaloon type="text" required value={clientName}  onChange={(event) => setClientName(event.target.value)} />
             <label>Cliente</label>
             <InputSaloon type="text" value={table} onChange={(event) => setTable(event.target.value)} />
             <label>Mesa</label>
           </OrderDetails>
-
+        
+      
+        <SectionMenu>
           {
             menu.map((menuItem, index) => {
               return (
@@ -126,8 +124,7 @@ function Saloon() {
                   <CardSaloon>
                     <h6><b><font size="4">{menuItem.name}</font></b></h6>
                     <p>R$ {menuItem.price}</p>
-                    <p>{menuItem.flavor}</p>
-                    <p>{menuItem.complement}</p>
+                    <p>{menuItem.flavor} {menuItem.complement}</p>
                     {/* <li>{menuItem.type}</li>
                     <li>{menuItem.sub_type}</li> */}
                     <ButtonMenu disabled={menuItem.qtd && menuItem.qtd != 0} onClick={() => handleClick(menuItem)}>Adicionar</ButtonMenu>
@@ -138,7 +135,10 @@ function Saloon() {
           }
         </SectionMenu>
 
-          <aside className="order-info">
+        
+
+          <OrderInfo>
+          <ButtonSubmit onClick={() => handleOrder(clientName, table, productsList)}>Enviar Pedido</ButtonSubmit> 
             <section>
               <Total>
                 TOTAL: R$ {localStorage.getItem('totalFinish')}
@@ -170,8 +170,8 @@ function Saloon() {
                 })
               }
             </section>
-          </aside>
-      </MainSaloon>
+          </OrderInfo>
+              <OrderInfo2>COLOCAR BOTÃO AQUI</OrderInfo2>
     </div>
   )
 }

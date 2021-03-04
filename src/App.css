@@ -11,6 +11,7 @@
   left: 0;
   right: 0;
   margin: auto;
+  overflow-y: auto;
 }
 
 .login-page, .register-page {
@@ -18,7 +19,7 @@
 }
 
 .saloon-page{
-  background-image: url(./images/saloonOk.jpg);
+  background-image: url(./images/mesaOk.jpg);
   background-size: 100%;
 }
 
@@ -64,23 +65,11 @@ li {
   list-style-type: none;
 }
 
-.order-info {
-  vertical-align: top;
-  display: inline-block;
-  overflow-y: auto;
-  width: 340px;
-  height: 300px;
-  border-radius: 10px;
-  padding: 10px;
-  margin-top: 260px;
-  background-color: transparent;
-  margin-left: 310px;
-  font-weight: bold;
-}
 
 .logo {
   width: 300px;
   height: 80px;
+  overflow-y: auto;
   /* padding-left: 50px; */
   /* background-color: gray; */
   /* margin-top: 50px; */
@@ -107,7 +96,7 @@ li {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 14px;
   background: gray;
 }
 

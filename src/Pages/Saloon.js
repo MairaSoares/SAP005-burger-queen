@@ -8,6 +8,8 @@ import { SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout, CardSaloon, OrderDeta
 
 function Saloon() {
 
+  // const [breakfastMenu, setBreakfastMenu] = useState([]);
+  // const [allDayMenu, setAllDayMenu] = useState([]);
   const [menu, setMenu] = useState([]);
   const [clientName, setClientName] = useState("");
   const [table, setTable] = useState("");
@@ -17,16 +19,12 @@ function Saloon() {
   const [itensMenu, setItens] = useState([]);
   const total = [];
 
-  
-
   function logout() {
     localStorage.clear();
     history.push("/");
   }
 
-
-
-  useEffect(() => { 
+  useEffect(() => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `${token}`);
   
@@ -36,12 +34,16 @@ function Saloon() {
       redirect: "follow"
     };
 
-    fetch("https://lab-api-bq.herokuapp.com/products", requestOptions) 
+    fetch("https://lab-api-bq.herokuapp.com/products", requestOptions)
       .then(response => response.json())
       .then(result => {
         localStorage.setItem('totalFinish', ' ')
         console.log(result);
         setMenu(result)
+        // const breakfast = result.filter(menuItem => menuItem.type === "breakfast");
+        // const allDay = result.filter(menuItem => menuItem.type === "all-day");
+        // setBreakfastMenu(breakfast);
+        // setAllDayMenu(allDay);
       })
       .catch(error => console.log("error", error));
   }, [])
@@ -67,6 +69,7 @@ function Saloon() {
         console.log(result);
         alert(`Pedido ${result.id} criado com sucesso!`);
         // Limpar form ao enviar pedido !
+        // window.location.reload(); ?? .replace("/saloon") ??
       })
       .catch(error => console.log("error", error));
   }
@@ -75,8 +78,6 @@ function Saloon() {
     item.qtd = 1;
     item.subtotal = item.price;
     setItens([...itensMenu, item]);
-    //console.log(item);
-    //console.log(itensMenu);
   }
 
   const additionProduct = (event, item, index) => {

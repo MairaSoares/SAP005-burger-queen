@@ -6,8 +6,7 @@ import {ButtonLogout} from "../Components/styleSaloon";
 
 
 function Kitchen() {
-  // const [orderKit, setOrderKit] = useState("");
-  const [newStatus, setNewStatus] = useState("");
+
   const token = localStorage.getItem("token");
   const history = useHistory();
   const [pendingOrders, setPendingOrders] = useState([]);
@@ -24,8 +23,7 @@ function Kitchen() {
       headers:{
         "accept": "aplication/json",
         "Authorization": `${token}`
-      },
-        
+      },  
     })
       .then((response) => response.json())
       .then ((json) => {
@@ -57,7 +55,14 @@ function Kitchen() {
       .then(response => response.json())
       .then(order => {
         console.log(order);
-        setNewStatus(order.status);
+        if (order.status === "preparing") {
+          const array = [...pendingOrders];
+          setPendingOrders(array.filter(order => order.id != orderId));
+          setPreparingOrders([...preparingOrders, order]);
+        } else {
+          const array = [...preparingOrders];
+          setPreparingOrders(array.filter(order => order.id != orderId));
+        }
       })
       .catch(error => console.log("error", error));
   }
@@ -69,8 +74,8 @@ function Kitchen() {
   }
 
   function millisecToMinSec(millis) {
-    let minutes = Math.floor(millis / 60000);
-    let seconds = ((millis % 60000) / 1000).toFixed(0);
+    const minutes = Math.floor(millis / 60000);
+    const seconds = ((millis % 60000) / 1000).toFixed(0);
     return (seconds == 60? (minutes + 1) + ": 00": minutes + ":" + (seconds <10? "0": "") + seconds);
   }
 

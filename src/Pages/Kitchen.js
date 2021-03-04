@@ -2,7 +2,7 @@ import React, {useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoKitchen from ".././images/LogoKitchenok.png";
 import IconLogout from ".././images/IconLogout.png";
-import {ButtonLogout} from "../Components/styleSaloon";
+import { ButtonLogout } from "../Components/styleSaloon";
 
 
 function Kitchen() {

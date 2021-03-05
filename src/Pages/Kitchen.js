@@ -13,7 +13,8 @@ function Kitchen() {
   const [preparingOrders, setPreparingOrders] = useState([]);
   let totalTime = "";
 
-  function logout() {
+  function logout(event) {
+    event.preventDefault();
     localStorage.clear();
     history.push("/");
   }

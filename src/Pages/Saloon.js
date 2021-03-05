@@ -17,8 +17,10 @@ function Saloon() {
   const history = useHistory();
   const [itensMenu, setItens] = useState([]);
   const total = [];
+  const [readyOrders, setReadyOrders] = useState([]);
 
-  function logout() {
+  function logout(event) {
+    event.preventDefault();
     localStorage.clear();
     history.push("/");
   }
@@ -78,7 +80,7 @@ function Saloon() {
     setItens([...itensMenu, item]);
   }
 
-  const additionProduct = (event, item, index) => {
+  function additionProduct(event, item, index) {
     event.preventDefault();
     let quantItemAdd = [...itensMenu];
     let subtotalAdd = quantItemAdd[index].price;
@@ -88,7 +90,7 @@ function Saloon() {
     console.log(quantItemAdd);
   }
 
-  const subtractionProduct = (event, item, index) => {
+  function subtractionProduct(event, item, index) {
     event.preventDefault();
     let quantItemSub = [...itensMenu];
     let subtotalSub = quantItemSub[index].price;
@@ -101,6 +103,59 @@ function Saloon() {
     setItens(quantItemSub);
     console.log(quantItemSub);
   }
+
+  function getUpdatedOrders(event) {
+    event.preventDefault();
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `${token}`);
+
+    const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+  };
+
+  fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      console.log(result);
+      const ready = result.filter(orders => orders.status === "ready");
+      setReadyOrders(ready);
+    })
+    .catch(error => console.log('error', error));
+  }
+
+  function updateStatus(orderId, orderStatus) {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `${token}`);
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("status", `${orderStatus}`);
+
+    const requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow"
+    };
+
+    fetch(`https://lab-api-bq.herokuapp.com/orders/${orderId}`, requestOptions)
+      .then(response => response.json())
+      .then(order => {
+        console.log(order);
+        const array = [...readyOrders];
+        setReadyOrders(array.filter(order => order.id != orderId));
+      })
+      .catch(error => console.log("error", error));
+  }
+
+  function handleDelivered(event, order) {
+    event.preventDefault();
+    order.status = "delivered";
+    updateStatus(order.id, order.status);
+  }
+
 
   return (
     <div className="saloon-page">
@@ -134,40 +189,59 @@ function Saloon() {
 
       <OrderInfo>
         <ButtonSubmit onClick={() => handleOrder(clientName, table, productsList)}>Enviar Pedido</ButtonSubmit> 
-          <section>
-            <Total>
-              TOTAL: R$ {localStorage.getItem('totalFinish')}
-            </Total>
-            {
-            //itensMenu.length !== 0 &&
-              itensMenu.map((item, index) => {
-                let orderItem = {
-                  id: item.id,
-                  qtd: item.qtd
-                }
-                productsList.push(orderItem);
-                total.push(item.subtotal);
-                const totalSome = total.reduce((acomulate, elemento) => acomulate + elemento, 0);
-                localStorage.setItem('totalFinish', totalSome);
-                return (
-                  <Summary key={index}>
-                    <ul>
-                      <li>{item.name}</li>
-                      <li>{item.flavor}</li>
-                      <li>{item.complement}</li>
-                      <li>R$ {item.subtotal}</li>
-                    </ul>
-                    <ButtonQtd disabled={item.qtd === 0} onClick={(event) => subtractionProduct(event, item, index)}>-</ButtonQtd>
-                    {item.qtd}
-                    <ButtonQtd onClick={(event) => additionProduct(event, item, index)}>+</ButtonQtd>
-                  </Summary>
-                )
-              })
-            }
-          </section>
-        </OrderInfo>
+        <section>
+          <Total>
+            TOTAL: R$ {localStorage.getItem('totalFinish')}
+          </Total>
+          {
+          //itensMenu.length !== 0 &&
+            itensMenu.map((item, index) => {
+              let orderItem = {
+                id: item.id,
+                qtd: item.qtd
+              }
+              productsList.push(orderItem);
+              total.push(item.subtotal);
+              const totalSome = total.reduce((acomulate, elemento) => acomulate + elemento, 0);
+              localStorage.setItem('totalFinish', totalSome);
+              return (
+                <Summary key={index}>
+                  <ul>
+                    <li>{item.name}</li>
+                    <li>{item.flavor}</li>
+                    <li>{item.complement}</li>
+                    <li>R$ {item.subtotal}</li>
+                  </ul>
+                  <ButtonQtd disabled={item.qtd === 0} onClick={(event) => subtractionProduct(event, item, index)}>-</ButtonQtd>
+                  {item.qtd}
+                  <ButtonQtd onClick={(event) => additionProduct(event, item, index)}>+</ButtonQtd>
+                </Summary>
+              )
+            })
+          }
+        </section>
+      </OrderInfo>
             
-        <OrderInfo2>COLOCAR BOTÃO AQUI</OrderInfo2>
+      <OrderInfo2>
+        <div>
+          <h4>Pedidos Prontos</h4>
+          <button onClick={(event) => getUpdatedOrders(event)}>Atualizar</button>
+        </div>
+        {
+          readyOrders.map((order, index) => {
+            return (
+              <div key={index}>
+                <ul>
+                  <li>Pedido: {order.id} | Mesa: {order.table}</li>
+                  <li>Cliente: {order.client_name}</li>
+                  <li>Status: {order.status}</li>
+                  <button onClick={(event) => handleDelivered(event, order)}>Entregue</button>
+                </ul>
+              </div>
+            )
+          })
+        }
+      </OrderInfo2>
     </div>
   )
 }

@@ -51,9 +51,8 @@
   margin: 4px 4px 4px 10px;
 }
 
-main {
+.orders-area {
   margin: 0 auto;
-  display: flex;
   align-content: center;
 }
 

@@ -1,4 +1,4 @@
-![Cantina Hamburgo](src/images/LogoCantinaOk.png)
+![Cantina Hamburgo](src/images/LogoReadme.jpeg)
 
 Esse projeto foi realizado durante o Bootcamp da Laboratoria - turma SAP005, iniciando nossos estudos sobre react.
 
@@ -33,24 +33,34 @@ Cantina por ter se popularizado como um espaço popular, onde se realiza refeiç
 
 ### 1.3 Conhecendo um pouco da interface
 
-Esta aplicação foi pensada para que o próprio funcionário possa utilizar intuitivamente os recursos disponíveis e que ao mesmo tempo facilite o seu trabalho. Acessando o site da [Cantina Hamburgo](https://cantinahamburgo.netlify.app/), será possível fazer login/registro, dependendo da função que será informada no cadastro, o mesmo será redirecionando para a interface que melhor se adequa a sua rotina. 
+Esta aplicação foi pensada para que o próprio funcionário possa utilizar intuitivamente os recursos disponíveis e que ao mesmo tempo facilite o seu trabalho. Acessando o site da [Cantina Hamburgo](https://cantinahamburgo.netlify.app/), será possível fazer login/registro, dependendo da função que será informada no cadastro, o mesmo será redirecionado para a interface que melhor se adequa a sua rotina. 
+
+
+![Tela Login](src/images/tela1.jpeg)
+
 
 **:cocktail: SALÃO**
->No canto esquerdo da interface é possível visualizar todo o cardápio disponível, sendo de fácil leitura e manuseio. No canto superior a esquerda, há um espaço para preencher manualmente nome e mesa do cliente. Na parte central-inferior da tela é possivel excluir, alterar quantidade e enviar o pedido que será recebido logo em seguida pela cozinha (um alerta aparecerá na tela, informando que o pedido foi devidamente enviado com sucesso). 
->Após realizar o pedido, no canto inferior direito, é possível verificar se o pedido já está pronto e o tempo de preparo.
+>No canto esquerdo da interface é possível visualizar todo o cardápio disponível, sendo de fácil leitura e manuseio. No canto superior à esquerda, há um espaço para preencher manualmente o nome e a mesa do cliente. Na parte central-inferior da tela é possivel excluir, alterar quantidade e enviar o pedido que será recebido logo em seguida pela cozinha (um alerta aparecerá na tela, informando que o pedido foi devidamente enviado com sucesso). 
+>Após realizar o pedido, no canto inferior direito, é possivel verificar se o pedido já está pronto e o tempo de preparo.
+
+
+![Tela Saloon](src/images/tela2.jpeg)
+
+
 
 **:woman_cook: COZINHA** 
 >A interface é dividida em duas partes (inferior e superior), na parte superior é possível verificar a lista de pedidos que devem ser preparados, ao clicar em "preparar pedido", o mesmo mudará de status.
 >Na parte inferior da interface estarão os pedidos em preparo, ao clicar "marcar como prontos", eles sumirão da interface e o funcionário do salão poderá verificar se o pedido está pronto.
 
 
+![Tela Cozinha](src/images/tela2.jpeg)
+
 
 ---
 
 ## 2. Planejamento Ágil :memo:
 
-Utilizou-se a ferramenta _Trello_ para planejar as ideais e organizar as tarefas. Abaixo a imagem do quadro que a equipe criou para tal fim. 
-
+Utilizou-se a ferramenta _Trello_ para planejar as ideais e organizar as tarefas.
 Se quiser saber um pouco mais sobre o planejamento, basta acessar esse [link](https://trello.com/b/Z4uI22ac/cantina-hamburgo).
 
 ## 3. Desenvolvimento
@@ -61,11 +71,11 @@ Se quiser saber um pouco mais sobre o planejamento, basta acessar esse [link](ht
 
 ### 3.2 Prótipos
 
-O projeto foi desenvolvido utilizando protótipos de baixa fidelidade e no projeto foi utilizado fotos de alta resolução.
+O projeto foi desenvolvido utilizando protótipos de baixa fidelidade e no projeto foram utilizadas fotos de alta resolução.
 
-![prototipo-1](src/images/Baixa fidelidade para login e registro.jpeg)
-![prototipo-1](src/images/Baixa fidelidade garçom garçonete.jpeg)
-![prototipo-1](src/images/Baixa fidelidade chefe de cozinha.jpeg)
+![prototipo-1](src/images/login.jpeg)
+![prototipo-1](src/images/saloon.jpeg)
+![prototipo-1](src/images/chefe.jpeg)
 
 
 ## 4. Habilidades Desenvolvidas :dart:

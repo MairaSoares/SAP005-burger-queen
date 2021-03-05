@@ -53,7 +53,7 @@ Esta aplicação foi pensada para que o próprio funcionário possa utilizar int
 >Na parte inferior da interface estarão os pedidos em preparo, ao clicar "marcar como prontos", eles sumirão da interface e o funcionário do salão poderá verificar se o pedido está pronto.
 
 
-![Tela Cozinha](src/images/tela2.jpeg)
+![Tela Cozinha](src/images/tela3.jpeg)
 
 
 ---

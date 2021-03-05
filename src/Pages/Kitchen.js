@@ -2,7 +2,7 @@ import React, {useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoKitchen from ".././images/LogoKitchenok.png";
 import IconLogout from ".././images/IconLogout.png";
-import { ButtonLogout } from "../Components/styleSaloon";
+// import { ButtonLogout } from "../Components/styleSaloon";
 
 
 function Kitchen() {
@@ -92,14 +92,15 @@ function Kitchen() {
 
   return (
     <div className="kitchen-page">
-      <img className="logo" src={logoKitchen}/>
-      <ButtonLogout onClick={(event) => logout(event)}><img src={IconLogout} /></ButtonLogout>
+      <div className="top-items">
+        <img className="logo" src={logoKitchen}/>
+        <button className="btn-logout" onClick={(event) => logout(event)}><img src={IconLogout} /></button>
+      </div>
 
       <main className="orders-area">
         <section className="kitchen-orders">
           {pendingOrders && pendingOrders.map (function (item, index) {
             const millisec = Date.parse(item.createdAt);
-            // const millisec2 = Date.parse(item.updatedAt);
             const fullDate = new Date(millisec);
             const newFormatDate = fullDate.toLocaleString();
             return (
@@ -123,7 +124,7 @@ function Kitchen() {
                   })}
                   </li> */}
                 </ul>
-                <button className="button-kitchen" onClick={(event) => handlePrepare(event, item)}>Preparar</button>
+                <button className="btn-kitchen" onClick={(event) => handlePrepare(event, item)}>PREPARAR PEDIDO</button>
               </div>
             )
           }
@@ -143,7 +144,7 @@ function Kitchen() {
                   <li>Cliente: {item.client_name}</li>
                   <li>Status: {item.status}</li>
                   <li>Data/Hora: {newFormatDate}</li><br />
-                  <li>{item.Products.map (function (productKit) {
+                  <li className="items-list">{item.Products.map (function (productKit) {
                     return (
                       <div key={productKit.id}>
                         <ul>
@@ -156,7 +157,7 @@ function Kitchen() {
                   })}
                   </li>
                 </ul>
-                <button className="button-kitchen" onClick={(event) => handleReady(event, item, millisec1, millisec2)}>Liberar</button>
+                <button className="btn-kitchen" onClick={(event) => handleReady(event, item, millisec1, millisec2)}>MARCAR COMO PRONTO</button>
               </div>
             )
           }

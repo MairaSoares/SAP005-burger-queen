@@ -161,6 +161,7 @@ function Saloon() {
     <div className="saloon-page">
       <img className="logo" src={logoSaloon} />
       <ButtonLogout onClick={(event) => logout(event)}><img src={IconLogout} /></ButtonLogout>
+      
       <OrderDetails>
         <InputSaloon type="text" required value={clientName}  onChange={(event) => setClientName(event.target.value)} />
         <label>Cliente</label>
@@ -188,7 +189,7 @@ function Saloon() {
       </SectionMenu>
 
       <OrderInfo>
-        <ButtonSubmit onClick={() => handleOrder(clientName, table, productsList)}>Enviar Pedido</ButtonSubmit> 
+        <ButtonSubmit onClick={() => handleOrder(clientName, table, productsList)}>Enviar Pedido</ButtonSubmit>
         <section>
           <Total>
             TOTAL: R$ {localStorage.getItem('totalFinish')}
@@ -211,10 +212,10 @@ function Saloon() {
                     <li>{item.flavor}</li>
                     <li>{item.complement}</li>
                     <li>R$ {item.subtotal}</li>
+                    <ButtonQtd disabled={item.qtd === 0} onClick={(event) => subtractionProduct(event, item, index)}>-</ButtonQtd>
+                    {item.qtd}
+                    <ButtonQtd onClick={(event) => additionProduct(event, item, index)}>+</ButtonQtd>
                   </ul>
-                  <ButtonQtd disabled={item.qtd === 0} onClick={(event) => subtractionProduct(event, item, index)}>-</ButtonQtd>
-                  {item.qtd}
-                  <ButtonQtd onClick={(event) => additionProduct(event, item, index)}>+</ButtonQtd>
                 </Summary>
               )
             })
@@ -224,17 +225,17 @@ function Saloon() {
             
       <OrderInfo2>
         <div>
-          <h4>Pedidos Prontos</h4>
-          <button onClick={(event) => getUpdatedOrders(event)}>Atualizar</button>
+          <h5>PEDIDOS PRONTOS</h5>
+          <button onClick={(event) => getUpdatedOrders(event)}>Atualizar lista</button>
         </div>
         {
           readyOrders.map((order, index) => {
             return (
               <div key={index}>
+                <br />
                 <ul>
                   <li>Pedido: {order.id} | Mesa: {order.table}</li>
                   <li>Cliente: {order.client_name}</li>
-                  <li>Status: {order.status}</li>
                   <button onClick={(event) => handleDelivered(event, order)}>Entregue</button>
                 </ul>
               </div>

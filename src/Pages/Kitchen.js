@@ -11,7 +11,6 @@ function Kitchen() {
   const history = useHistory();
   const [pendingOrders, setPendingOrders] = useState([]);
   const [preparingOrders, setPreparingOrders] = useState([]);
-  let totalTime = "";
 
   function logout(event) {
     event.preventDefault();
@@ -74,19 +73,10 @@ function Kitchen() {
     updateStatus(order.id, order.status);
   }
 
-  function millisecToMinSec(millis) {
-    const minutes = Math.floor(millis / 60000);
-    const seconds = ((millis % 60000) / 1000).toFixed(0);
-    return (seconds == 60? (minutes + 1) + ": 00": minutes + ":" + (seconds <10? "0": "") + seconds);
-  }
-
-  function handleReady(event, order, created, updated) {
+  function handleReady(event, order) {
     event.preventDefault();
     order.status = "ready";
     updateStatus(order.id, order.status);
-    const diff = (updated - created);
-    totalTime = millisecToMinSec(diff);
-    console.log(totalTime);
   }
 
 
@@ -110,19 +100,6 @@ function Kitchen() {
                   <li>Cliente: {item.client_name}</li>
                   <li>Status: {item.status}</li>
                   <li>Data/Hora: {newFormatDate}</li>
-                  {/* <br />
-                  <li>{item.Products.map (function (productKit) {
-                    // console.log(productKit)
-                    return (
-                      <div key={productKit.id}>
-                        <ul>
-                          <li>{productKit.qtd} x {productKit.name}</li>
-                          <li >{productKit.flavor} {productKit.complement}</li>
-                        </ul>
-                      </div>
-                    )
-                  })}
-                  </li> */}
                 </ul>
                 <button className="btn-kitchen" onClick={(event) => handlePrepare(event, item)}>PREPARAR PEDIDO</button>
               </div>
@@ -133,9 +110,8 @@ function Kitchen() {
 
         <section className="kitchen-orders">
           {preparingOrders && preparingOrders.map (function (item, index){
-            const millisec1 = Date.parse(item.createdAt);
-            const millisec2 = Date.parse(item.updatedAt);
-            const fullDate = new Date(millisec1);
+            const millisec = Date.parse(item.createdAt);
+            const fullDate = new Date(millisec);
             const newFormatDate = fullDate.toLocaleString();
             return (
               <div key={index} className="preparing-orders">
@@ -157,7 +133,7 @@ function Kitchen() {
                   })}
                   </li>
                 </ul>
-                <button className="btn-kitchen" onClick={(event) => handleReady(event, item, millisec1, millisec2)}>MARCAR COMO PRONTO</button>
+                <button className="btn-kitchen" onClick={(event) => handleReady(event, item)}>MARCAR COMO PRONTO</button>
               </div>
             )
           }

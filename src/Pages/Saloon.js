@@ -18,6 +18,7 @@ function Saloon() {
   const [itensMenu, setItens] = useState([]);
   const total = [];
   const [readyOrders, setReadyOrders] = useState([]);
+  let totalTime = "";
 
   function logout(event) {
     event.preventDefault();
@@ -156,6 +157,12 @@ function Saloon() {
     updateStatus(order.id, order.status);
   }
 
+  function millisecToMinSec(millis) {
+    const minutes = Math.floor(millis / 60000);
+    const seconds = ((millis % 60000) / 1000).toFixed(0);
+    return (seconds == 60? (minutes + 1) + ": 00": minutes + ":" + (seconds <10? "0": "") + seconds);
+  }
+
 
   return (
     <div className="saloon-page">
@@ -230,12 +237,17 @@ function Saloon() {
         </div>
         {
           readyOrders.map((order, index) => {
+            const millisec1 = Date.parse(order.createdAt);
+            const millisec2 = Date.parse(order.updatedAt);
+            const diff = millisec2 - millisec1;
+            totalTime = millisecToMinSec(diff);
             return (
               <div key={index}>
                 <br />
                 <ul>
                   <li>Pedido: {order.id} | Mesa: {order.table}</li>
                   <li>Cliente: {order.client_name}</li>
+                  <li>Tempo de preparo: {totalTime}</li>
                   <button onClick={(event) => handleDelivered(event, order)}>Entregue</button>
                 </ul>
               </div>

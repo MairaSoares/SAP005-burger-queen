@@ -18,15 +18,15 @@
   background-image: url(./images/pratoOk.jpg);
 }
 
-.saloon-page{
+.saloon-page, .kitchen-page {
   background-image: url(./images/mesaOk.jpg);
   background-size: 100%;
 }
 
-.kitchen-page{
-  background-image: url(images/mesaOk.jpg);
+.kitchen-page {
   text-align: center;
   color: aliceblue;
+  margin: 0;
 }
 
 .login-form, .register-form {
@@ -65,6 +65,10 @@ li {
   list-style-type: none;
 }
 
+.items-list {
+  height: 120px;
+  overflow-y: auto;
+}
 
 .logo {
   width: 300px;
@@ -75,11 +79,34 @@ li {
   /* margin-top: 50px; */
 }
 
+.top-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-logout {
+  background-color: transparent;
+  border: none;
+}
+
+.btn-kitchen {
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  height: 35px;
+  width: 240px;
+  background-color: rgb(141, 189, 166);
+}
+
 .kitchen-orders {
   display: flex;
-  margin-left: 30%;
+  margin-left: 25%;
+  margin-right: 5%;
   overflow-x: auto;
   white-space: nowrap;
+  background-color: rgba(2, 14, 4, 0.767);
+  width: 850px;
+  border-radius: 5px;
 }
 
 .pending-orders, .preparing-orders {
@@ -88,7 +115,7 @@ li {
   border: solid 1px white;
   margin: 10px;
   padding: 10px;
-  width: 250px;
+  width: 260px;
 }
 
 ::-webkit-scrollbar-track {
@@ -107,7 +134,15 @@ li {
 
 @media screen and (max-width: 1024px) {
 
-  .login-page, .register-page {
+  .login-page, .register-page, .saloon-page, .kitchen-page {
     background-size: 125%;
+  }
+
+  .kitchen-orders {
+    margin: 0 auto;
+  }
+
+  .top-items {
+    margin-top: 20px;
   }
 }

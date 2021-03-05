@@ -8,11 +8,11 @@ import { ButtonForm, WriteForm, TittleForm, ConfigForm, HeightRegister, DivCente
 
 function Register() {
 
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
-  const [restaurant, setRestaurant] = useState("");
-  const [name, setName] = useState("");
+  const restaurant = "Cantina Hamburgo";
   const history = useHistory();
 
   function saloonPage() {
@@ -94,13 +94,6 @@ function Register() {
               Área de Trabalho:
               <InputRadio type="radio" name="role" value="waiter" onChange={(event) => setRole(event.target.value)} />Salão
               <InputRadio type="radio" name="role" value="chef" onChange={(event) => setRole(event.target.value)} />Cozinha
-            </label>
-          </div>
-
-          <div>
-            <label>
-              Restaurante:
-              <WriteForm type="text" placeholder="Nome do Restaurante" value={restaurant} onChange={(event) => setRestaurant(event.target.value)} />
             </label>
           </div>
         </HeightRegister>

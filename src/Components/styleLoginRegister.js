@@ -67,6 +67,7 @@ export const TittleForm = styled.title`
   font-size: 24px;
   text-align: center;
   color: #708090;
+  margin-left: 30px;
 
   width: 100%;
   display: block;

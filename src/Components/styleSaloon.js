@@ -142,7 +142,6 @@ export const Total = styled.div`
     text-align: center;
     display: flex;
     margin-top: -190px;
-    
 `
 export const InputSaloon = styled.input`
     border: 0;

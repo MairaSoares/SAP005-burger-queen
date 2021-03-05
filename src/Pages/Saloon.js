@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoSaloon from ".././images/LogoSaloonok.png";
 import IconLogout from ".././images/IconLogout.png";
-import { SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout, CardSaloon, OrderDetails, Summary, Total, InputSaloon, ButtonSubmit, OrderInfo,  OrderInfo2 } from "../Components/styleSaloon";
+import { SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout, CardSaloon, OrderDetails, Summary, Total, InputSaloon, ButtonSubmit, OrderInfo,  OrderInfo2, ButtonList } from "../Components/styleSaloon";
 
 
 function Saloon() {
@@ -232,8 +232,7 @@ function Saloon() {
             
       <OrderInfo2>
         <div>
-          <h5>PEDIDOS PRONTOS</h5>
-          <button onClick={(event) => getUpdatedOrders(event)}>Atualizar lista</button>
+          <h5>Pedidos Prontos</h5><ButtonList onClick={(event) => getUpdatedOrders(event)}>Atualizar lista</ButtonList>
         </div>
         {
           readyOrders.map((order, index) => {

@@ -13,10 +13,13 @@ export const SectionMenu = styled.section`
     padding: 1%;
     padding-top: 35px;
     margin-left: 40px;
-    background-color: #e8e8e8;
+    
     font-weight: bold;
     position: relative;
     margin-top: -100px;
+
+    white-space: nowrap;
+    background-color: rgba(2, 14, 4, 0.767);
     
     
 `
@@ -222,5 +225,24 @@ export const OrderInfo2 = styled.aside`
     font-weight: bold;
     position: relative;
     margin-top: 20px;
+
+`
+
+export const ButtonList = styled.button`
+
+    margin-left: 180px;
+    height: 50px;
+    border-radius: 25px;
+    background: #57b846;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+
+    border: none;
+    outline:none;
+    background-color: #3CB371;
+    box-shadow:  -9px 9px 14px rgba(0, 0, 0, 0.5);
 
 `

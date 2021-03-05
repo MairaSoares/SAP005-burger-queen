@@ -54,6 +54,7 @@ export const WriteForm = styled.input`
     height: 50px;
     border-radius: 25px;
     padding: 0 30px 0 68px;
+    margin-left:10px;
     
     box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.5),
     inset -6px -6px 10px 0 rgba(255, 255, 255, 0.9);
@@ -67,7 +68,6 @@ export const TittleForm = styled.title`
   font-size: 24px;
   text-align: center;
   color: #708090;
-  margin-left: 30px;
 
   width: 100%;
   display: block;

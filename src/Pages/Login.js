@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import logo from ".././images/LogoCantinaok.png";

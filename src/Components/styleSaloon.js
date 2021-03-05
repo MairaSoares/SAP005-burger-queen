@@ -246,3 +246,11 @@ export const ButtonList = styled.button`
     box-shadow:  -9px 9px 14px rgba(0, 0, 0, 0.5);
 
 `
+export const ButtonOk = styled.button`
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    height: 35px;
+    width: 240px;
+    background-color: rgb(141, 189, 166);
+`

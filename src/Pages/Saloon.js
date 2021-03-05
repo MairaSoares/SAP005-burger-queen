@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoSaloon from ".././images/LogoSaloonok.png";
 import IconLogout from ".././images/IconLogout.png";
-import { SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout, CardSaloon, OrderDetails, Summary, Total, InputSaloon, ButtonSubmit, OrderInfo,  OrderInfo2, ButtonList } from "../Components/styleSaloon";
+import { SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout, CardSaloon, OrderDetails, Summary, Total, InputSaloon, ButtonSubmit, OrderInfo,  OrderInfo2, ButtonList, ButtonOk } from "../Components/styleSaloon";
 
 
 function Saloon() {
@@ -247,7 +247,7 @@ function Saloon() {
                   <li>Pedido: {order.id} | Mesa: {order.table}</li>
                   <li>Cliente: {order.client_name}</li>
                   <li>Tempo de preparo: {totalTime}</li>
-                  <button onClick={(event) => handleDelivered(event, order)}>Entregue</button>
+                  <ButtonOk onClick={(event) => handleDelivered(event, order)}>Entregue</ButtonOk>
                 </ul>
               </div>
             )

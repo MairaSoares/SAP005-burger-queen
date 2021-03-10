@@ -10,6 +10,7 @@ function Login() {
   const [password, setPassword] = useState("");
   // const [token, setToken] = useState("");
   const history = useHistory();
+  const [errorMsg, setErrorMsg] = useState("");
 
   function saloonPage() {
     history.push("/saloon");
@@ -37,22 +38,23 @@ function Login() {
   fetch("https://lab-api-bq.herokuapp.com/auth", requestOptions)
     .then(response => response.json())
     .then(result => {
-      console.log(result);
-      localStorage.setItem("token", result.token);
-      if (result.role === "waiter") {
-        saloonPage();
-      }
-      if (result.role === "chef") {
-        kitchenPage();
+      if (result.code) {
+        setErrorMsg(result.message);
+      } else {
+        localStorage.setItem("token", result.token);
+        if (result.role === "waiter") {
+          saloonPage();
+        }
+        if (result.role === "chef") {
+          kitchenPage();
+        }
       }
     })
-    .catch(error => console.log("error", error));
   }
 
   function handleSubmit (event) {
     event.preventDefault();
     loginAuth (email, password)
-    console.log(loginAuth);
   }
   
   return (
@@ -74,6 +76,7 @@ function Login() {
               <WriteForm type="password" placeholder="Informar senha" value={password} onChange={(event) => setPassword(event.target.value)} />
             </label>
           </div>
+          <label><font color="#b31010">{errorMsg}</font></label>
         </HeightLogin>
 
         <DivCenter>

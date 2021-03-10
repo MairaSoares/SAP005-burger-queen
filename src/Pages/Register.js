@@ -14,6 +14,7 @@ function Register() {
   const [role, setRole] = useState("");
   const restaurant = "Cantina Hamburgo";
   const history = useHistory();
+  const [errorMsg, setErrorMsg] = useState("");
 
   function saloonPage() {
     history.push("/saloon");
@@ -44,16 +45,18 @@ function Register() {
   fetch("https://lab-api-bq.herokuapp.com/users", requestOptions)
     .then(response => response.json())
     .then(result => {
-      console.log(result);
-      localStorage.setItem("token", result.token);
-      if (result.role === "waiter") {
-        saloonPage();
-      }
-      if (result.role === "chef") {
-        kitchenPage();
+      if (result.code) {
+        setErrorMsg(result.message);
+      } else {
+        localStorage.setItem("token", result.token);
+        if (result.role === "waiter") {
+          saloonPage();
+        }
+        if (result.role === "chef") {
+          kitchenPage();
+        }
       }
     })
-    .catch(error => console.log("error", error));
   }
 
   function handleSubmit (event) {
@@ -96,6 +99,7 @@ function Register() {
               <InputRadio type="radio" name="role" value="chef" onChange={(event) => setRole(event.target.value)} />Cozinha
             </label>
           </div>
+          <label><font color="#b31010">{errorMsg}</font></label>
         </HeightRegister>
 
         <DivCenter>

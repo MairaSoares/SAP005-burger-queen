@@ -19,6 +19,7 @@ function Saloon() {
   const total = [];
   const [readyOrders, setReadyOrders] = useState([]);
   let totalTime = "";
+  const [errorMsg, setErrorMsg] = useState("");
 
   function logout(event) {
     event.preventDefault();
@@ -69,10 +70,13 @@ function Saloon() {
       .then(response => response.json())
       .then(result => {
         console.log(result);
-        alert(`Pedido ${result.id} criado com sucesso!`);
-        window.location.reload();
+        if (result.code) {
+          alert(result.message);
+        } else {
+          alert(`Pedido ${result.id} criado com sucesso!`);
+          window.location.reload();
+        }
       })
-      .catch(error => console.log("error", error));
   }
   
   function handleClick(item) {
@@ -170,7 +174,7 @@ function Saloon() {
       <ButtonLogout onClick={(event) => logout(event)}><img src={IconLogout} /></ButtonLogout>
       
       <OrderDetails>
-        <InputSaloon type="text" required value={clientName}  onChange={(event) => setClientName(event.target.value)} />
+        <InputSaloon type="text" required value={clientName} onChange={(event) => setClientName(event.target.value)} />
         <label>Cliente</label>
         <InputSaloon type="text" value={table} onChange={(event) => setTable(event.target.value)} />
         <label>Mesa</label>
@@ -247,7 +251,7 @@ function Saloon() {
                   <li>Pedido: {order.id} | Mesa: {order.table}</li>
                   <li>Cliente: {order.client_name}</li>
                   <li>Tempo de preparo: {totalTime}</li>
-                  <ButtonOk onClick={(event) => handleDelivered(event, order)}>Entregue</ButtonOk>
+                  <ButtonOk onClick={(event) => handleDelivered(event, order)}>Marcar como Entregue</ButtonOk>
                 </ul>
               </div>
             )

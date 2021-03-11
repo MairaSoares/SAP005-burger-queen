@@ -76,7 +76,7 @@ function Login() {
               <WriteForm type="password" placeholder="Informar senha" value={password} onChange={(event) => setPassword(event.target.value)} />
             </label>
           </div>
-          <label><font color="#b31010">{errorMsg}</font></label>
+          <label className= "error"><font color="#b31010">{errorMsg}</font></label>
         </HeightLogin>
 
         <DivCenter>

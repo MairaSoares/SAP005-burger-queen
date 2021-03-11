@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoSaloon from ".././images/LogoSaloonok.png";
 import IconLogout from ".././images/IconLogout.png";
-import { SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout, CardSaloon, OrderDetails, Summary, Total, InputSaloon, ButtonSubmit, OrderInfo,  OrderInfo2, ButtonList, ButtonOk } from "../Components/styleSaloon";
+import { MainSaloon, SectionMenu, ButtonMenu, ButtonQtd, ButtonLogout, CardSaloon, OrderDetails, Summary, Total, InputSaloon, ButtonSubmit, OrderInfo,  OrderInfo2, ButtonList, ButtonOk } from "../Components/styleSaloon";
 
 
 function Saloon() {
@@ -19,7 +19,7 @@ function Saloon() {
   const total = [];
   const [readyOrders, setReadyOrders] = useState([]);
   let totalTime = "";
-  const [errorMsg, setErrorMsg] = useState("");
+  // const [errorMsg, setErrorMsg] = useState("");
 
   function logout(event) {
     event.preventDefault();
@@ -170,94 +170,99 @@ function Saloon() {
 
   return (
     <div className="saloon-page">
-      <img className="logo" src={logoSaloon} />
-      <ButtonLogout onClick={(event) => logout(event)}><img src={IconLogout} /></ButtonLogout>
       
-      <OrderDetails>
-        <InputSaloon type="text" required value={clientName} onChange={(event) => setClientName(event.target.value)} />
-        <label>Cliente</label>
-        <InputSaloon type="text" value={table} onChange={(event) => setTable(event.target.value)} />
-        <label>Mesa</label>
-      </OrderDetails>
-      
-      <SectionMenu>
-        {
-          menu.map((menuItem, index) => {
-            return (
-              <div key={index}>
-                <CardSaloon>
-                  <h6><b><font size="4">{menuItem.name}</font></b></h6>
-                  <p>R$ {menuItem.price}</p>
-                  <p>{menuItem.flavor} {menuItem.complement}</p>
-                  {/* <li>{menuItem.type}</li>
-                  <li>{menuItem.sub_type}</li> */}
-                  <ButtonMenu disabled={menuItem.qtd && menuItem.qtd != 0} onClick={() => handleClick(menuItem)}>Adicionar</ButtonMenu>
-                </CardSaloon>
-              </div>
-            )
-          })
-        }
-      </SectionMenu>
+      <div className="top-items">
+        <img className="logo" src={logoSaloon} />
+        <ButtonLogout onClick={(event) => logout(event)}><img src={IconLogout} /></ButtonLogout>
+      </div>
+       
+      <MainSaloon>
 
-      <OrderInfo>
-        <ButtonSubmit onClick={() => handleOrder(clientName, table, productsList)}>Enviar Pedido</ButtonSubmit>
-        <section>
-          <Total>
-            TOTAL: R$ {localStorage.getItem('totalFinish')}
-          </Total>
+        <SectionMenu>
           {
-          //itensMenu.length !== 0 &&
-            itensMenu.map((item, index) => {
-              let orderItem = {
-                id: item.id,
-                qtd: item.qtd
-              }
-              productsList.push(orderItem);
-              total.push(item.subtotal);
-              const totalSome = total.reduce((acomulate, elemento) => acomulate + elemento, 0);
-              localStorage.setItem('totalFinish', totalSome);
+            menu.map((menuItem, index) => {
               return (
-                <Summary key={index}>
-                  <ul>
-                    <li>{item.name}</li>
-                    <li>{item.flavor}</li>
-                    <li>{item.complement}</li>
-                    <li>R$ {item.subtotal}</li>
-                    <ButtonQtd disabled={item.qtd === 0} onClick={(event) => subtractionProduct(event, item, index)}>-</ButtonQtd>
-                    {item.qtd}
-                    <ButtonQtd onClick={(event) => additionProduct(event, item, index)}>+</ButtonQtd>
-                  </ul>
-                </Summary>
+                <div key={index}>
+                  <CardSaloon>
+                    <h6><b><font size="4">{menuItem.name}</font></b></h6>
+                    <p>R$ {menuItem.price}</p>
+                    <p>{menuItem.flavor} {menuItem.complement}</p>
+                    {/* <li>{menuItem.type}</li>
+                    <li>{menuItem.sub_type}</li> */}
+                    <ButtonMenu disabled={menuItem.qtd && menuItem.qtd != 0} onClick={() => handleClick(menuItem)}>Adicionar</ButtonMenu>
+                  </CardSaloon>
+                </div>
               )
             })
           }
-        </section>
-      </OrderInfo>
-            
-      <OrderInfo2>
-        <div>
-          <h5>Pedidos Prontos</h5><ButtonList onClick={(event) => getUpdatedOrders(event)}>Atualizar lista</ButtonList>
-        </div>
-        {
-          readyOrders.map((order, index) => {
-            const millisec1 = Date.parse(order.createdAt);
-            const millisec2 = Date.parse(order.updatedAt);
-            const diff = millisec2 - millisec1;
-            totalTime = millisecToMinSec(diff);
-            return (
-              <div key={index}>
-                <br />
-                <ul>
-                  <li>Pedido: {order.id} | Mesa: {order.table}</li>
-                  <li>Cliente: {order.client_name}</li>
-                  <li>Tempo de preparo: {totalTime}</li>
-                  <ButtonOk onClick={(event) => handleDelivered(event, order)}>Marcar como Entregue</ButtonOk>
-                </ul>
-              </div>
-            )
-          })
-        }
-      </OrderInfo2>
+        </SectionMenu>
+
+        <OrderInfo>
+          <OrderDetails>
+            <InputSaloon type="text" required value={clientName} onChange={(event) => setClientName(event.target.value)} />
+            <label>Cliente</label>
+            <InputSaloon type="text" value={table} onChange={(event) => setTable(event.target.value)} />
+            <label>Mesa</label>
+            <ButtonSubmit onClick={() => handleOrder(clientName, table, productsList)}>Enviar Pedido</ButtonSubmit>
+            <Total>TOTAL: R$ {localStorage.getItem('totalFinish')}</Total>
+          </OrderDetails>
+          <div>
+            {
+            //itensMenu.length !== 0 &&
+              itensMenu.map((item, index) => {
+                let orderItem = {
+                  id: item.id,
+                  qtd: item.qtd
+                }
+                productsList.push(orderItem);
+                total.push(item.subtotal);
+                const totalSome = total.reduce((acomulate, elemento) => acomulate + elemento, 0);
+                localStorage.setItem('totalFinish', totalSome);
+                return (
+                  <Summary key={index}>
+                    <ul>
+                      <li>{item.name}</li>
+                      <li>{item.flavor}</li>
+                      <li>{item.complement}</li>
+                      <li>R$ {item.subtotal}</li>
+                      <ButtonQtd disabled={item.qtd === 0} onClick={(event) => subtractionProduct(event, item, index)}>-</ButtonQtd>
+                      {item.qtd}
+                      <ButtonQtd onClick={(event) => additionProduct(event, item, index)}>+</ButtonQtd>
+                    </ul>
+                  </Summary>
+                )
+              })
+            }
+          </div>
+        </OrderInfo>
+              
+        <OrderInfo2>
+          <div>
+            <h5>Pedidos Prontos</h5><ButtonList onClick={(event) => getUpdatedOrders(event)}>Atualizar lista</ButtonList>
+          </div>
+          {
+            readyOrders.map((order, index) => {
+              const millisec1 = Date.parse(order.createdAt);
+              const millisec2 = Date.parse(order.updatedAt);
+              const diff = millisec2 - millisec1;
+              totalTime = millisecToMinSec(diff);
+              return (
+                <div key={index}>
+                  <br />
+                  <ul>
+                    <li>Pedido: {order.id} | Mesa: {order.table}</li>
+                    <li>Cliente: {order.client_name}</li>
+                    <li>Tempo de preparo: {totalTime}</li>
+                    <ButtonOk onClick={(event) => handleDelivered(event, order)}>Marcar como Entregue</ButtonOk>
+                  </ul>
+                </div>
+              )
+            })
+          }
+        </OrderInfo2>
+
+      </MainSaloon>
+
     </div>
   )
 }

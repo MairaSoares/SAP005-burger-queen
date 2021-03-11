@@ -20,7 +20,6 @@
 
 .saloon-page, .kitchen-page {
   background-image: url(./images/mesaOk.jpg);
-  background-size: 100%;
 }
 
 .kitchen-page {
@@ -81,11 +80,6 @@ li {
 .top-items {
   display: flex;
   justify-content: space-between;
-}
-
-.btn-logout {
-  background-color: transparent;
-  border: none;
 }
 
 .btn-kitchen {

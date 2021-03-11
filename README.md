@@ -2,7 +2,7 @@
 
 Esse projeto foi realizado durante o Bootcamp da Laboratoria - turma SAP005, iniciando nossos estudos sobre react.
 
-[**Conheça a Cantina Hamburgo :computer:**] (https://cantinahamburgo.netlify.app/)
+[**Conheça a Cantina Hamburgo :computer:**] (https://cantina-hamburgo.herokuapp.com/)
 > Status do Projeto: em andamento :gear:
 
 ---

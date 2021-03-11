@@ -2,7 +2,7 @@
 
 Esse projeto foi realizado durante o Bootcamp da Laboratoria - turma SAP005, iniciando nossos estudos sobre react.
 
-[**Conheça a Cantina Hamburgo :computer:**] (https://cantinahamburgo.netlify.app/)
+[**Conheça a Cantina Hamburgo :computer:**] (https://cantina-hamburgo.herokuapp.com/)
 > Status do Projeto: em andamento :gear:
 
 ---
@@ -44,7 +44,7 @@ Esta aplicação foi pensada para que o próprio funcionário possa utilizar int
 >Após realizar o pedido, no canto inferior direito, é possivel verificar se o pedido já está pronto e o tempo de preparo.
 
 
-![Tela Saloon](src/images/tela2.jpeg)
+![Tela Saloon](src/images/tela02.jpeg)
 
 
 

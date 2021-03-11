@@ -1,32 +1,29 @@
 import styled from 'styled-components';
 
 
+export const MainSaloon = styled.main`
+    display: flex;
+    margin: 25px;
+    height: 550px;
+`
+
 export const SectionMenu = styled.section`
 
     vertical-align: top;
     display: inline-flex;
     flex-wrap: wrap;
     overflow-y: auto;
-    width: 500px;
-    height: 500PX;
-    margin-right: 3%;
+    width: 550px;
     padding: 1%;
-    padding-top: 35px;
-    margin-left: 40px;
+    margin: 15px;
+    border-radius: 5px;
     
     font-weight: bold;
-    position: relative;
-    margin-top: -100px;
-
-    white-space: nowrap;
     background-color: rgba(2, 14, 4, 0.767);
     
     
 `
 export const OrderDetails = styled.div`
-    position: relative;
-    margin-right: 200px;
-    margin-left: 600px;
     padding: 10px;
     border-radius: 0 0 2px 2px;
     background-color: #e8e8e8;
@@ -104,10 +101,8 @@ export const ButtonSubmit = styled.button`
 `
 
 export const ButtonLogout = styled.button`
-    margin-left: 900px;
     border: none;
     background-color: Transparent;
-    padding-top: 10px;
     
 `
 
@@ -136,16 +131,15 @@ export const CardSaloon = styled.div`
 
 export const Summary = styled. div`
     text-align: center;
-    margin-top: 40px;
-    margin-right: 40px;
     list-style-type: none;
 `
 
 export const Total = styled.div`
     text-align: center;
     display: flex;
-    margin-top: -190px;
+    margin-bottom: 15px;
 `
+
 export const InputSaloon = styled.input`
     border: 0;
     border-bottom: 2px solid #3CB371;
@@ -190,41 +184,34 @@ export const LabelSaloon = styled.label`
   box-sizing: border-box;
 `
 
-export const OrderInfo = styled.aside`
+export const OrderInfo = styled.section`
 
     vertical-align: top;
     display: inline-flex;
+    justify-content: center;
     flex-wrap: wrap;
     overflow-y: auto;
     width: 380px;
-    height: 390PX;
-    margin-right: 2%;
     padding: 1%;
-    padding-top: 25px;
-    margin-left: -7px;
     background-color: #e8e8e8;
     font-weight: bold;
-    position: relative;
-    margin-top: 20px;
+    margin: 15px;
+    border-radius: 5px;
 
 `
 
-export const OrderInfo2 = styled.aside`
+export const OrderInfo2 = styled.section`
 
     vertical-align: top;
     display: inline-flex;
     flex-wrap: wrap;
     overflow-y: auto;
-    width: 300px;
-    height: 390PX;
-    margin-right: 2%;
+    width: 330px;
     padding: 1%;
-    padding-top: 25px;
-    margin-left: 20px;
     background-color: #e8e8e8;
     font-weight: bold;
-    position: relative;
-    margin-top: 20px;
+    margin: 15px;
+    border-radius: 5px;
 
 `
 

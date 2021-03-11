@@ -2,7 +2,7 @@ import React, {useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoKitchen from ".././images/LogoKitchenok.png";
 import IconLogout from ".././images/IconLogout.png";
-// import { ButtonLogout } from "../Components/styleSaloon";
+import { ButtonLogout } from "../Components/styleSaloon";
 
 
 function Kitchen() {
@@ -82,12 +82,14 @@ function Kitchen() {
 
   return (
     <div className="kitchen-page">
+
       <div className="top-items">
         <img className="logo" src={logoKitchen}/>
-        <button className="btn-logout" onClick={(event) => logout(event)}><img src={IconLogout} /></button>
+        <ButtonLogout className="btn-logout" onClick={(event) => logout(event)}><img src={IconLogout} /></ButtonLogout>
       </div>
 
       <main className="orders-area">
+        
         <section className="kitchen-orders">
           {pendingOrders && pendingOrders.map (function (item, index) {
             const millisec = Date.parse(item.createdAt);
@@ -139,7 +141,9 @@ function Kitchen() {
           }
           )}
         </section>
+
       </main>
+
     </div>
   )
 }

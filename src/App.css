@@ -124,6 +124,9 @@ li {
   background: gray;
 }
 
+.error{
+  margin-left: 45px;
+}
 
 @media screen and (max-width: 1024px) {
 

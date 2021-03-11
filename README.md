@@ -44,7 +44,7 @@ Esta aplicação foi pensada para que o próprio funcionário possa utilizar int
 >Após realizar o pedido, no canto inferior direito, é possivel verificar se o pedido já está pronto e o tempo de preparo.
 
 
-![Tela Saloon](src/images/tela2.jpeg)
+![Tela Saloon](src/images/tela02.jpeg)
 
 
 

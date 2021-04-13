@@ -3,7 +3,12 @@
 Esse projeto foi realizado durante o Bootcamp da Laboratoria - turma SAP005, iniciando nossos estudos sobre react.
 
 [**Conheça a Cantina Hamburgo :computer:**] (https://cantina-hamburgo.herokuapp.com/)
-> Status do Projeto: em andamento :gear:
+
+### Para testar aplicação:
+- Login página da Cozinha - E-mail: chef@testing.com.br  Password: teste456
+- Login para página do Salão - E-mail: waiter@testing.com.br  Password: teste123
+
+> Status do Projeto: refatorando :gear:
 
 ---
 
